@@ -25,4 +25,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Habitraca.Domain\Habitraca.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
