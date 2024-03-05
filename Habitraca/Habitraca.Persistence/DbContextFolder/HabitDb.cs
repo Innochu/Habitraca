@@ -1,6 +1,8 @@
-﻿using Habitraca.Domain.Entities;
+﻿using Habitraca.Application.AuthEntity;
+using Habitraca.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Habitraca.Persistence.DbContextFolder
 {
@@ -29,6 +31,22 @@ namespace Habitraca.Persistence.DbContextFolder
                 }
             }
             return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    FirstName = "Innocent",
+                    LastName = "Chukwudi",
+                    Email = "Chuksinnocent1@gmail.com",
+                    PhoneNumber = "07013238817",
+                  
+                }
+                );
+
+            
         }
     }
 }
