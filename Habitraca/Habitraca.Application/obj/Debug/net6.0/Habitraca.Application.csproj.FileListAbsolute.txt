@@ -1,0 +1,17 @@
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\bin\Debug\net6.0\Habitraca.Application.deps.json
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\bin\Debug\net6.0\Habitraca.Application.runtimeconfig.json
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\bin\Debug\net6.0\Habitraca.Application.dll
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\bin\Debug\net6.0\Habitraca.Application.pdb
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\bin\Debug\net6.0\Habitraca.Domain.dll
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\bin\Debug\net6.0\Habitraca.Domain.pdb
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.csproj.AssemblyReference.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.AssemblyInfoInputs.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.AssemblyInfo.cs
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.csproj.CoreCompileInputs.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.csproj.CopyComplete
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.dll
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\refint\Habitraca.Application.dll
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.pdb
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\Habitraca.Application.genruntimeconfig.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Application\obj\Debug\net6.0\ref\Habitraca.Application.dll
