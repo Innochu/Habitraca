@@ -9,7 +9,8 @@ using Savi_Thrift.Application.Interfaces.Repositories;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Habitraca.Application.Interface.Service;
-
+using Habitraca.Domain;
+using Microsoft.AspNetCore.Http;
 namespace Habitraca.Application.Services
 {
     public class AuthService : IAuthService
@@ -19,12 +20,12 @@ namespace Habitraca.Application.Services
         private readonly IConfiguration _config;
         private readonly SignInManager<User> _signInManager;
 
-        public AuthService( UserManager<User> userManager, SignInManager<User> signInManager)
+        public AuthService( UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config)
         {
            
             _userManager = userManager;
-          
-            _signInManager = signInManager;
+			_config = config;
+              _signInManager = signInManager;
         }
 
           public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
