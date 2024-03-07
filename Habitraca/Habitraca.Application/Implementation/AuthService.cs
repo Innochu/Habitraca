@@ -8,10 +8,11 @@ using Microsoft.IdentityModel.Tokens;
 using Savi_Thrift.Application.Interfaces.Repositories;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using Habitraca.Application.Interface.Service;
 
 namespace Habitraca.Application.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<User> _userManager;
