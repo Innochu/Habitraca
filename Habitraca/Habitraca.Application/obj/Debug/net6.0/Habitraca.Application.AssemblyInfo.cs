@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Habitraca.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3498dc1bc618f1538f352909076faeb7adbc183")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Habitraca.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Habitraca.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

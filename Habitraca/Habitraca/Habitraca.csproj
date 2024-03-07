@@ -27,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Habitraca.Common\Habitraca.Common.csproj" />
     <ProjectReference Include="..\Habitraca.Persistence\Habitraca.Persistence.csproj" />
   </ItemGroup>

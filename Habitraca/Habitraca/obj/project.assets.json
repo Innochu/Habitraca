@@ -2820,19 +2820,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user1\\.nuget\\packages\\": {}
+    "C:\\Users\\Decagon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user1\\Documents\\Incase\\Habitraca\\Habitraca\\Habitraca\\Habitraca.csproj",
+      "projectUniqueName": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca\\Habitraca.csproj",
       "projectName": "Habitraca",
-      "projectPath": "C:\\Users\\user1\\Documents\\Incase\\Habitraca\\Habitraca\\Habitraca\\Habitraca.csproj",
-      "packagesPath": "C:\\Users\\user1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user1\\Documents\\Incase\\Habitraca\\Habitraca\\Habitraca\\obj\\",
+      "projectPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca\\Habitraca.csproj",
+      "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Decagon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2846,11 +2846,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\user1\\Documents\\Incase\\Habitraca\\Habitraca\\Habitraca.Common\\Habitraca.Common.csproj": {
-              "projectPath": "C:\\Users\\user1\\Documents\\Incase\\Habitraca\\Habitraca\\Habitraca.Common\\Habitraca.Common.csproj"
+            "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Common\\Habitraca.Common.csproj": {
+              "projectPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Common\\Habitraca.Common.csproj"
             },
-            "C:\\Users\\user1\\Documents\\Incase\\Habitraca\\Habitraca\\Habitraca.Persistence\\Habitraca.Persistence.csproj": {
-              "projectPath": "C:\\Users\\user1\\Documents\\Incase\\Habitraca\\Habitraca\\Habitraca.Persistence\\Habitraca.Persistence.csproj"
+            "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Persistence\\Habitraca.Persistence.csproj": {
+              "projectPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Persistence\\Habitraca.Persistence.csproj"
             }
           }
         }
@@ -2933,7 +2933,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   },
