@@ -47,6 +47,7 @@ namespace Habitraca.Persistence.DbContextFolder
                     LastName = "Chukwudi",
                     Email = "Chuksinnocent1@gmail.com",
                     PhoneNumber = "07013238817",
+                    Password = "Password",
                   
                 }
                 );

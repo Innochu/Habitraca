@@ -116,10 +116,10 @@ namespace Habitraca.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "15f7f226-bcae-49b3-a0b1-0b409dc3399e",
+                            Id = "fd38f6d8-b64d-4609-a010-940b8b1f0acf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54390da0-95b1-4baa-a051-a4a3c7afdd3d",
-                            CreatedAt = new DateTime(2024, 3, 7, 6, 22, 48, 192, DateTimeKind.Local).AddTicks(189),
+                            ConcurrencyStamp = "e46aed18-4aea-49d3-8c8f-b017b1096520",
+                            CreatedAt = new DateTime(2024, 3, 7, 22, 33, 20, 925, DateTimeKind.Local).AddTicks(4862),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Chuksinnocent1@gmail.com",
                             EmailConfirmed = false,
@@ -127,9 +127,10 @@ namespace Habitraca.Persistence.Migrations
                             IsDeleted = false,
                             LastName = "Chukwudi",
                             LockoutEnabled = false,
+                            Password = "Password",
                             PhoneNumber = "07013238817",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "065f9263-7155-4c10-a88c-c5c64c19be91",
+                            SecurityStamp = "03bb451b-77c3-45df-938e-9a4f3db53e76",
                             TwoFactorEnabled = false
                         });
                 });
