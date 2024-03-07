@@ -1,0 +1,7 @@
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.csproj.AssemblyReference.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.AssemblyInfoInputs.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.AssemblyInfo.cs
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.csproj.CoreCompileInputs.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.MvcApplicationPartsAssemblyInfo.cache
