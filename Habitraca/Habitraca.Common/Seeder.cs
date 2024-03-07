@@ -6,7 +6,7 @@ namespace Habitraca.Common
 {
     public class Seeder
     {
-        public static void SeedRoles(IServiceProvider serviceProvider)
+        public static async Task SeedRoles(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
