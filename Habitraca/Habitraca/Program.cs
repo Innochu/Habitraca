@@ -30,6 +30,16 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
             }).AddEntityFrameworkStores<HabitDbContext>().AddDefaultTokenProviders();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 
