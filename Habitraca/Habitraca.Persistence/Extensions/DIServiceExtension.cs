@@ -12,7 +12,7 @@ namespace Habitraca.Persistence.Extensions
     {
         public static IServiceCollection AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<HabitDb>(options => 
+            services.AddDbContext<HabitDbContext>(options => 
             options.UseSqlServer(configuration.GetConnectionString("HabitracaConnection")));
 
           

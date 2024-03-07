@@ -7,9 +7,9 @@ using System.Net;
 
 namespace Habitraca.Persistence.DbContextFolder
 {
-    public class HabitDb : IdentityDbContext<User>
+    public class HabitDbContext : IdentityDbContext<User>
     {
-        public HabitDb(DbContextOptions<HabitDb> options) : base(options)
+        public HabitDbContext(DbContextOptions<HabitDbContext> options) : base(options)
         {
             
         }
