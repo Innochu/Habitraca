@@ -28,7 +28,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = true;
 
-            }).AddEntityFrameworkStores<HabitDb>().AddDefaultTokenProviders();
+            }).AddEntityFrameworkStores<HabitDbContext>().AddDefaultTokenProviders();
 
 var app = builder.Build();
 

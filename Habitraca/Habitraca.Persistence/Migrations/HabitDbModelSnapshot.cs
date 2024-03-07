@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Habitraca.Persistence.Migrations
 {
-    [DbContext(typeof(HabitDb))]
+    [DbContext(typeof(HabitDbContext))]
     partial class HabitDbModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

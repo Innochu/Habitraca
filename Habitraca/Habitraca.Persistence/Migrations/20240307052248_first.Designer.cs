@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Habitraca.Persistence.Migrations
 {
-    [DbContext(typeof(HabitDb))]
+    [DbContext(typeof(HabitDbContext))]
     [Migration("20240307052248_first")]
     partial class first
     {
