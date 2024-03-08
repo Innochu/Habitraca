@@ -20,12 +20,11 @@ namespace Habitraca.Application.Services
         private readonly IConfiguration _config;
         private readonly SignInManager<User> _signInManager;
 
-        public AuthService( UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config)
         {
-           
             _userManager = userManager;
 			_config = config;
-              _signInManager = signInManager;
+            _signInManager = signInManager;
         }
 
           public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
