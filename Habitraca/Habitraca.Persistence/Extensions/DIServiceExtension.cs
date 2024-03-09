@@ -14,7 +14,7 @@ namespace Habitraca.Persistence.Extensions
 {
     public static class DIServiceExtension
     {
-        public static IServiceCollection AddDependencies(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<HabitDbContext>(options => 
             options.UseSqlServer(configuration.GetConnectionString("HabitracaConnection")));
@@ -31,7 +31,7 @@ namespace Habitraca.Persistence.Extensions
            
 
 
-            return services;
+            //return services;
         }
     }
 }

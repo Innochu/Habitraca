@@ -11,6 +11,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Habitraca.Application.Interface.Service;
 using Habitraca.Domain;
 using Microsoft.AspNetCore.Http;
+using System.Web;
+using Habitraca.Application.AuthEntity;
+
 namespace Habitraca.Application.Services
 {
     public class AuthService : IAuthService
@@ -20,15 +23,77 @@ namespace Habitraca.Application.Services
         private readonly IConfiguration _config;
         private readonly SignInManager<User> _signInManager;
 
-        public AuthService( UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config, IUnitOfWork unitOfWork)
         {
-           
             _userManager = userManager;
 			_config = config;
-              _signInManager = signInManager;
+            _signInManager = signInManager;
+            _unitOfWork = unitOfWork;
         }
 
-          public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
+        public async Task<ApiResponse<RegisterResponseDto>> RegisterAsync(SignUp userSignup)
+        {
+            var user = await _userManager.FindByEmailAsync(userSignup.Email);
+            if (user != null)
+            {
+                return ApiResponse<RegisterResponseDto>.Failed("User with this email already exists.", StatusCodes.Status400BadRequest, new List<string>());
+            }
+
+            var userr = await _unitOfWork.UserRepository.FindAsync(x => x.PhoneNumber == userSignup.PhoneNumber);
+            if (userr.Count > 0)
+            {
+                return ApiResponse<RegisterResponseDto>.Failed("User with this phone number already exists.", StatusCodes.Status400BadRequest, new List<string>());
+            }
+
+            var appUser = new User()
+            {
+                FirstName = userSignup.FirstName,
+                LastName = userSignup.LastName,
+                Email = userSignup.Email,
+                PhoneNumber = userSignup.PhoneNumber,
+                UserName = userSignup.Email,
+                PasswordResetToken = ""
+            };
+
+            try
+            {
+                var token = "";
+
+                var result = await _userManager.CreateAsync(appUser, userSignup.Password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(appUser, "User");
+                    token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+                    token = HttpUtility.UrlEncode(token);
+                   
+                
+                        var response = new RegisterResponseDto
+                        {
+                            Id = appUser.Id,
+                            Email = appUser.Email,
+                            PhoneNumber = appUser.PhoneNumber,
+                            FirstName = appUser.FirstName,
+                            LastName = appUser.LastName,
+                            Token = token
+                        };
+
+
+
+                        return ApiResponse<RegisterResponseDto>.Success(response, "User registered successfully. Please click on the link sent to your email to confirm your account", StatusCodes.Status201Created);
+                   
+                }
+                else
+                {
+                    return ApiResponse<RegisterResponseDto>.Failed("Error occurred: Failed to create wallet", StatusCodes.Status201Created, new List<string>());
+                }
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "Error occurred while adding a manager " + ex.InnerException);
+                return ApiResponse<RegisterResponseDto>.Failed("Error creating user.", StatusCodes.Status500InternalServerError, new List<string>() { ex.InnerException.ToString() });
+            }
+        }
+        public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
 		{
 			try
 			{
@@ -68,7 +133,7 @@ namespace Habitraca.Application.Services
 				return ApiResponse<LoginResponseDto>.Failed("Some error occurred while loggin in." + ex.InnerException, StatusCodes.Status500InternalServerError, new List<string>());
 			}
 		}
-		private string GenerateJwtToken(User contact, string roles)
+   		private string GenerateJwtToken(User user, string role)
 		{
 			var jwtSettings = _config.GetSection("JwtSettings:Secret").Value;
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings));
@@ -76,11 +141,11 @@ namespace Habitraca.Application.Services
 
 			var claims = new[]
 			{
-				new Claim(JwtRegisteredClaimNames.Sub, contact.Id),
-				new Claim(JwtRegisteredClaimNames.Email, contact.Email),
+				new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+				new Claim(JwtRegisteredClaimNames.Email, user.Email),
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-				new Claim(JwtRegisteredClaimNames.GivenName, contact.FirstName+" "+contact.LastName),
-				new Claim(ClaimTypes.Role, roles)
+				new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName+" "+user    .LastName),
+				new Claim(ClaimTypes.Role, role)
 			};
 
 			var token = new JwtSecurityToken(

@@ -149,3 +149,4 @@ C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.pdb
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\Habitraca.genruntimeconfig.cache
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\obj\Debug\net6.0\ref\Habitraca.dll
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

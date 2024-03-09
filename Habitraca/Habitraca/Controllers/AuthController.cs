@@ -1,4 +1,5 @@
-﻿using Habitraca.Application.Interface.Service;
+﻿using Habitraca.Application.AuthEntity;
+using Habitraca.Application.Interface.Service;
 using Habitraca.Domain;
 using Habitraca.Domain.AuthEntity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,26 @@ namespace Habitraca.Controllers
         public AuthController(IAuthService authService)
         {
             _authService = authService;
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody] SignUp userSignup)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ApiResponse<string>.Failed("Invalid model state.", StatusCodes.Status400BadRequest, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
+            }
+
+            // Call registration service
+            var registrationResult = await _authService.RegisterAsync(userSignup);
+
+            if (registrationResult.Succeeded)
+            {
+                return Ok(registrationResult);
+            }
+            return BadRequest(new { Message = registrationResult.Message, Errors = registrationResult.Errors });
+            
+
         }
 
         [HttpPost("Login")]

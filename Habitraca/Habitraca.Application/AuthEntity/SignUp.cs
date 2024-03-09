@@ -16,7 +16,7 @@ namespace Habitraca.Application.AuthEntity
 
         [Required(ErrorMessage = "PhoneNumber address is required.")]
       
-        public long PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Password address is required.")]
        
