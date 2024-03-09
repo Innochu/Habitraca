@@ -4,6 +4,7 @@ using Habitraca.Common;
 using Habitraca.Domain.Entities;
 using Habitraca.Persistence.DbContextFolder;
 using Microsoft.AspNetCore.Identity;
+using Habitraca.Application.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationHelper.InstantiateConfiguration(builder.Configuration);
@@ -14,8 +15,10 @@ var configuration = builder.Configuration;
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAuthentication();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDependencies(configuration);
+builder.Services.ConfigureAuthentication(configuration);
 // Register Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
             {

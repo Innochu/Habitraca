@@ -133,7 +133,7 @@ namespace Habitraca.Application.Services
 				return ApiResponse<LoginResponseDto>.Failed("Some error occurred while loggin in." + ex.InnerException, StatusCodes.Status500InternalServerError, new List<string>());
 			}
 		}
-   		private string GenerateJwtToken(User contact, string roles)
+   		private string GenerateJwtToken(User user, string role)
 		{
 			var jwtSettings = _config.GetSection("JwtSettings:Secret").Value;
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings));
@@ -141,11 +141,11 @@ namespace Habitraca.Application.Services
 
 			var claims = new[]
 			{
-				new Claim(JwtRegisteredClaimNames.Sub, contact.Id),
-				new Claim(JwtRegisteredClaimNames.Email, contact.Email),
+				new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+				new Claim(JwtRegisteredClaimNames.Email, user.Email),
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-				new Claim(JwtRegisteredClaimNames.GivenName, contact.FirstName+" "+contact.LastName),
-				new Claim(ClaimTypes.Role, roles)
+				new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName+" "+user    .LastName),
+				new Claim(ClaimTypes.Role, role)
 			};
 
 			var token = new JwtSecurityToken(

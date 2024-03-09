@@ -35,27 +35,6 @@ namespace Habitraca.Controllers
             return BadRequest(new { Message = registrationResult.Message, Errors = registrationResult.Errors });
             
 
-            //if (registrationResult.Succeeded)
-            //{
-            //    var data = registrationResult.Data;
-            //    _backgroundJobClient.Enqueue(() => Console.WriteLine(data));
-            //    var confirmationLink = GenerateConfirmEmailLink(data.Id, data.Token);
-            //    if (confirmationLink != null)
-            //    {
-            //        await _emailServices.SendEmailAsync(confirmationLink, data.Email);
-            //        return Ok(data);
-            //    }
-            //    else
-            //    {
-            //        await _userService.DeleteUser(data.Id);
-            //        return Ok("Email sending error: Confirmation link is null");
-            //    }
-
-            //}
-            //else
-            //{
-            //    return BadRequest(new { Message = registrationResult.Message, Errors = registrationResult.Errors });
-            //}
         }
 
         [HttpPost("Login")]
