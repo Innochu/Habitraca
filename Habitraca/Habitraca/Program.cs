@@ -19,6 +19,7 @@ builder.Services.AddAuthentication();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDependencies(configuration);
 builder.Services.ConfigureAuthentication(configuration);
+builder.Services.EmailConfig(configuration);
 // Register Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
