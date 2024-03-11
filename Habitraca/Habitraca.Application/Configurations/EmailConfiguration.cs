@@ -8,7 +8,7 @@ namespace Habitraca.Application.Configurations
     {
         public static void EmailConfig(this IServiceCollection services, IConfiguration config)
         {
-            services.Configure<Emailsettings>(config.GetSection("EmailSettings"));
+            services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
         }
     }
 }
