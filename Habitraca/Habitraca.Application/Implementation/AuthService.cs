@@ -63,11 +63,11 @@ namespace Habitraca.Application.Services
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(appUser, "User");
-                    token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
-                    token = HttpUtility.UrlEncode(token);
+                    //token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+                    //token = HttpUtility.UrlEncode(token);
                    
                 
-                        var response = new RegisterResponseDto
+                        var response = new RegisterResponseDto()
                         {
                             Id = appUser.Id,
                             Email = appUser.Email,
@@ -84,7 +84,8 @@ namespace Habitraca.Application.Services
                 }
                 else
                 {
-                    return ApiResponse<RegisterResponseDto>.Failed("Error occurred: Failed to create wallet", StatusCodes.Status201Created, new List<string>());
+                    return ApiResponse<RegisterResponseDto>.Failed("Error occurred: Failed to Create User", StatusCodes.Status400BadRequest, new List<string>());
+
                 }
             }
             catch (Exception ex)
