@@ -1,17 +1,18 @@
-﻿using Habitraca.Domain.EmailFolder;
+﻿using Habitraca.Application.Interface.Service;
+using Habitraca.Domain.EmailFolder;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 
 namespace Habitraca.Application.Implementation
 {
-    public class EmailService
+    public class EmailService : IEmailService
     {
         private readonly EmailSettings _emailSettings;
 
         public EmailService(EmailSettings emailSettings)
         {
-            _emailSettings = emailSettings;
+            _emailSettings = emailSettings; 
         }
 
         public async Task EmailConfirmation(string link, string email)
