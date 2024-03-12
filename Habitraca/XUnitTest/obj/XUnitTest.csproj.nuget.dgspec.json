@@ -91,10 +91,6 @@
             "MimeKit": {
               "target": "Package",
               "version": "[4.4.0, )"
-            },
-            "NETCore.MailKit": {
-              "target": "Package",
-              "version": "[2.1.0, )"
             }
           },
           "imports": [

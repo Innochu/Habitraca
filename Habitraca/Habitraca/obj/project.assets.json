@@ -1058,19 +1058,6 @@
           }
         }
       },
-      "NETCore.MailKit/2.1.0": {
-        "type": "package",
-        "dependencies": {
-          "MailKit": "3.2.0",
-          "Microsoft.Extensions.DependencyInjection": "6.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.1/NETCore.MailKit.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.1/NETCore.MailKit.dll": {}
-        }
-      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "type": "package",
         "dependencies": {
@@ -1509,8 +1496,7 @@
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.Extensions.Identity.Stores": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0",
-          "MimeKit": "4.4.0",
-          "NETCore.MailKit": "2.1.0"
+          "MimeKit": "4.4.0"
         },
         "compile": {
           "bin/placeholder/Habitraca.Application.dll": {}
@@ -1535,8 +1521,7 @@
           "Microsoft.Extensions.Identity.Core": "6.0.0",
           "Microsoft.Extensions.Identity.Stores": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0",
-          "MimeKit": "4.4.0",
-          "NETCore.MailKit": "2.1.0"
+          "MimeKit": "4.4.0"
         },
         "compile": {
           "bin/placeholder/Habitraca.Common.dll": {}
@@ -1558,8 +1543,7 @@
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.Extensions.Identity.Stores": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0",
-          "MimeKit": "4.4.0",
-          "NETCore.MailKit": "2.1.0"
+          "MimeKit": "4.4.0"
         },
         "compile": {
           "bin/placeholder/Habitraca.Domain.dll": {}
@@ -1584,8 +1568,7 @@
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.Extensions.Identity.Stores": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0",
-          "MimeKit": "4.4.0",
-          "NETCore.MailKit": "2.1.0"
+          "MimeKit": "4.4.0"
         },
         "compile": {
           "bin/placeholder/Habitraca.Persistence.dll": {}
@@ -3097,18 +3080,6 @@
         "mimekit.nuspec"
       ]
     },
-    "NETCore.MailKit/2.1.0": {
-      "sha512": "+1C0sg4YJQczp/2RVrVbKLIntg7Mou7Ie5M01UBiAsxmIarjfBRlCgKK4sEbPyGask52VRKV29/Zi+41B6LPXA==",
-      "type": "package",
-      "path": "netcore.mailkit/2.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.1/NETCore.MailKit.dll",
-        "netcore.mailkit.2.1.0.nupkg.sha512",
-        "netcore.mailkit.nuspec"
-      ]
-    },
     "Swashbuckle.AspNetCore/6.5.0": {
       "sha512": "FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
       "type": "package",
@@ -3859,7 +3830,6 @@
       "Microsoft.Extensions.Identity.Stores >= 6.0.0",
       "Microsoft.Extensions.Options >= 6.0.0",
       "MimeKit >= 4.4.0",
-      "NETCore.MailKit >= 2.1.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -3960,10 +3930,6 @@
           "MimeKit": {
             "target": "Package",
             "version": "[4.4.0, )"
-          },
-          "NETCore.MailKit": {
-            "target": "Package",
-            "version": "[2.1.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "elH94ISnvhE+fu0MJTFK+KBgsbANFDrs0gXiG4veH82Ly9NDxFGWp8d+5kkm7+XWRE48ypEuaj2Z5JcbW/sysg==",
+  "dgSpecHash": "tyfFNyT98QlySBpjhOiejuYsZ2s9nn5VdLlz1S+2pgwXlvfGhDOYEQ9XsB0LzmiemYc1s7pPCiJPDBDk0Vggrg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Domain\\Habitraca.Domain.csproj",
   "expectedPackageFiles": [
@@ -42,7 +42,6 @@
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\mimekit\\4.4.0\\mimekit.4.4.0.nupkg.sha512",
-    "C:\\Users\\Decagon\\.nuget\\packages\\netcore.mailkit\\2.1.0\\netcore.mailkit.2.1.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

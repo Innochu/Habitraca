@@ -11,10 +11,12 @@ namespace Habitraca.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly IEmailService _emailService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IEmailService emailService)
         {
             _authService = authService;
+            _emailService = emailService;
         }
 
         [HttpPost("Register")]
@@ -30,12 +32,35 @@ namespace Habitraca.Controllers
 
             if (registrationResult.Succeeded)
             {
-                return Ok(registrationResult);
+                var data = registrationResult.Data;
+             
+                var confirmationLink = GenerateConfirmEmailLink(data.Id, data.Token);
+                if (confirmationLink != null)
+                {
+                    await _emailService.EmailConfirmation(confirmationLink, data.Email);
+                    return Ok(data);
+                }
+                else
+                {
+                  //  await _userService.DeleteUser(data.Id);
+                    return Ok("Email sending error: Confirmation link is null");
+                }
             }
-            return BadRequest(new { Message = registrationResult.Message, Errors = registrationResult.Errors });
+            else
+            {
+                return BadRequest(new { Message = registrationResult.Message, Errors = registrationResult.Errors });
+            }
+           
             
 
         }
+
+        private static string GenerateConfirmEmailLink(string id, string token)
+        {
+            var cemail = "https://localhost:7226/api/account/confirm-email?UserId=" + id + "&token=" + token;
+            return cemail;
+        }
+
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login(Login loginDTO)

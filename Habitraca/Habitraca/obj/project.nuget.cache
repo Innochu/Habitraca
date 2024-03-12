@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7HRARR+MI/Ix9D+MIlGgrLaBQAkIvF00YMFsu+gdTyNtxB9/B+9g4mHaTzAo1qsknxbSuVVs65a2d9MgulhspA==",
+  "dgSpecHash": "hsFml4lfmGBwLJIOixMjmullIzIw5qNWkhKr1AKx8/PESY8w/UCrQ+CjOg3HEWjLoMw0+af2pEMw0L9vkEWLCQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca\\Habitraca.csproj",
   "expectedPackageFiles": [
@@ -66,7 +66,6 @@
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\mimekit\\4.4.0\\mimekit.4.4.0.nupkg.sha512",
-    "C:\\Users\\Decagon\\.nuget\\packages\\netcore.mailkit\\2.1.0\\netcore.mailkit.2.1.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

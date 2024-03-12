@@ -1,6 +1,7 @@
-﻿using Habitraca.Application.Interface.Service;
+﻿using Habitraca.Application.Implementation;
+using Habitraca.Application.Interface.Service;
 using Habitraca.Application.Services;
-using Habitraca.Domain.Entities;
+using Habitraca.Domain.EmailFolder;
 using Habitraca.Persistence.DbContextFolder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Savi_Thrift.Application.Interfaces.Repositories;
 using Savi_Thrift.Persistence.Repositories;
 using IdentityRole = Microsoft.AspNetCore.Identity.IdentityRole;
+
 
 namespace Habitraca.Persistence.Extensions
 {
@@ -22,6 +24,12 @@ namespace Habitraca.Persistence.Extensions
             services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<IAuthService, AuthService>();
 
+            // Register Email services
+            var emailSettings = new EmailSettings();
+            configuration.GetSection("EmailSettings").Bind(emailSettings);
+            services.AddSingleton(emailSettings);
+            services.AddScoped<IEmailService, EmailService>();
+         
 
             // Register GenericRepository
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -30,8 +38,6 @@ namespace Habitraca.Persistence.Extensions
 
            
 
-
-            //return services;
         }
     }
 }
