@@ -1,9 +1,9 @@
 ﻿using Habitraca.Persistence.DbContextFolder;
 using Microsoft.EntityFrameworkCore;
-using Savi_Thrift.Application.Interfaces.Repositories;
+using Habitraca.Application.Interfaces.Repositories;
 using System.Linq.Expressions;
 
-namespace Savi_Thrift.Persistence.Repositories
+namespace Habitraca.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
@@ -22,17 +22,24 @@ namespace Savi_Thrift.Persistence.Repositories
         public void DeleteAllAsync(List<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);
-        }
+        }   
 
-        public void DeleteAsync(T entity)
+        //public void DeleteAsync(T entity)
+        //{
+        //    _context.Set<T>().Remove(entity);
+        //}     
+
+         public async Task DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
-        }     
+            await SaveChangesAsync();
+        }
+
 
         public async Task<List<T>> FindAsync(Expression<Func<T, bool>> expression)
         {
             return await _context.Set<T>().Where(expression).ToListAsync();
-        }
+            }
 
         public async Task<T> FindSingleAsync(Expression<Func<T, bool>> expression)
         {
@@ -50,7 +57,7 @@ namespace Savi_Thrift.Persistence.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async void SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }

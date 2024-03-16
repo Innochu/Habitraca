@@ -28,7 +28,7 @@ namespace Habitraca.Controllers
         public async Task<IActionResult> Register([FromBody] SignUp userSignup)
         {
             if (!ModelState.IsValid)
-            {
+             {
                 return BadRequest(ApiResponse<string>.Failed("Invalid model state.", StatusCodes.Status400BadRequest, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
             }
 

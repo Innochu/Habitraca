@@ -1,6 +1,6 @@
 ﻿using Habitraca.Application.Interface.Repositories;
 
-namespace Savi_Thrift.Application.Interfaces.Repositories
+namespace Habitraca.Application.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
 	{

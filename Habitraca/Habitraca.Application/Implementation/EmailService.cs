@@ -12,7 +12,7 @@ namespace Habitraca.Application.Implementation
 
         public EmailService(EmailSettings emailSettings)
         {
-            _emailSettings = emailSettings; 
+            _emailSettings = emailSettings;
         }
 
         public async Task EmailConfirmation(string link, string email)
@@ -42,7 +42,7 @@ namespace Habitraca.Application.Implementation
             }
             catch (Exception ex)
             {
-              //  _logger.LogError(ex, "Error occurred while sending email.");
+                //  _logger.LogError(ex, "Error occurred while sending email.");
                 throw new Exception("Error occurred while sending email. Please try again later.", ex);
             }
         }
@@ -63,6 +63,11 @@ namespace Habitraca.Application.Implementation
                     HtmlBody = $"{emailEntity.Body}<br/>"
                 };
 
+                AttachFile(bodyBuilder, @"C:\Users\Decagon\OneDrive\Pictures\Screenshots\xy.png.png", "xy.png");
+
+                //  AttachFile(bodyBuilder, "EmailAttachments/lorem.jpeg", "attachment2.jpeg");
+
+
                 emailMessage.Body = bodyBuilder.ToMessageBody();
 
                 using var client = new SmtpClient();
@@ -70,15 +75,33 @@ namespace Habitraca.Application.Implementation
                 await client.AuthenticateAsync(_emailSettings.Email, _emailSettings.Password);
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(true);
+
+
+
             }
             catch (Exception)
             {
-              //  _logger.LogError(ex, "Error occurred while sending email.");
+                //  _logger.LogError(ex, "Error occurred while sending email.");
                 throw;
             }
 
 
+        }
 
+
+        public void AttachFile(BodyBuilder bodyBuilder, string filePath, string fileName)
+        {
+            if (File.Exists(filePath))
+            {
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    bodyBuilder.Attachments.Add(fileName, fileStream);
+                }
+            }
+            else
+            {
+                // Log or handle missing file error
+            }
         }
     }
 }

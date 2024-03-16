@@ -18,11 +18,6 @@ C:\Users\user1\Documents\Incase\Habitraca\Habitraca\Habitraca.Persistence\bin\De
 C:\Users\user1\Documents\Incase\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.csproj.CopyComplete
 C:\Users\user1\Documents\Incase\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.genruntimeconfig.cache
 C:\Users\user1\Documents\Incase\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\ref\Habitraca.Persistence.dll
-C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.csproj.AssemblyReference.cache
-C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.AssemblyInfoInputs.cache
-C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.AssemblyInfo.cs
-C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.csproj.CoreCompileInputs.cache
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\bin\Debug\net6.0\Habitraca.Persistence.deps.json
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\bin\Debug\net6.0\Habitraca.Persistence.runtimeconfig.json
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\bin\Debug\net6.0\Habitraca.Persistence.dll
@@ -31,6 +26,11 @@ C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\bin\
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\bin\Debug\net6.0\Habitraca.Domain.dll
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\bin\Debug\net6.0\Habitraca.Application.pdb
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\bin\Debug\net6.0\Habitraca.Domain.pdb
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.csproj.AssemblyReference.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.AssemblyInfoInputs.cache
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.AssemblyInfo.cs
+C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.csproj.CoreCompileInputs.cache
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.csproj.CopyComplete
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\Habitraca.Persistence.dll
 C:\Users\Decagon\OneDrive\Desktop\Habitraca\Habitraca\Habitraca.Persistence\obj\Debug\net6.0\refint\Habitraca.Persistence.dll

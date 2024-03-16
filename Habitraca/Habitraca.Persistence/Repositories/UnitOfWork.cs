@@ -2,9 +2,9 @@
 using Habitraca.Persistence.DbContextFolder;
 using Habitraca.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Savi_Thrift.Application.Interfaces.Repositories;
+using Habitraca.Application.Interfaces.Repositories;
 
-namespace Savi_Thrift.Persistence.Repositories
+namespace Habitraca.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
 	{
@@ -19,12 +19,42 @@ namespace Savi_Thrift.Persistence.Repositories
         public IUserRepository UserRepository { get; set; }
 
         public async Task<int> SaveChangesAsync()
-		{
-			return await _context.SaveChangesAsync();
-		}
-		public void Dispose()
-		{
-			_context.Dispose();
-		}
+        {
+            try
+            {
+                return await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log the exception or handle it as needed
+                throw new Exception("Error occurred while saving changes to the database.", ex);
+            }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+
+                disposed = true;
+            }
+        }
+
+        private bool disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+
+  //      public void Dispose()
+		//{
+		//	_context.Dispose();
+		//}
 	}
 }

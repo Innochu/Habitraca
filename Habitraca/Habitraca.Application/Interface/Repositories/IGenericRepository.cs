@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Savi_Thrift.Application.Interfaces.Repositories
+namespace Habitraca.Application.Interfaces.Repositories
 {
 	public interface IGenericRepository<T> where T : class
 	{
@@ -9,9 +9,9 @@ namespace Savi_Thrift.Application.Interfaces.Repositories
 		Task<List<T>> FindAsync(Expression<Func<T, bool>> expression);
 		Task AddAsync(T entity);
 		void Update(T entity);
-		void DeleteAsync(T entity);
+		Task DeleteAsync(T entity);
 		void DeleteAllAsync(List<T> entities);
-		void SaveChangesAsync();
+		Task SaveChangesAsync();
 		Task<T> FindSingleAsync(Expression<Func<T, bool>> expression);
 
     }
