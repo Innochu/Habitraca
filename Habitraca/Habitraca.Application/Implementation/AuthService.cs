@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Savi_Thrift.Application.Interfaces.Repositories;
+using Habitraca.Application.Interfaces.Repositories;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Habitraca.Application.Interface.Service;
