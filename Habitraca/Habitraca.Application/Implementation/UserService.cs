@@ -15,10 +15,12 @@ namespace Habitraca.Application.Implementation
         }
         public async Task<ApiResponse<User>> DeleteUser(string id)
         {
-            var findUser = await _unitOfWork.UserRepository.GetByIdAsync(id);
+          
 
             try
             {
+                var findUser = await _unitOfWork.UserRepository.GetUserByIdAsync(id);
+
                 if (findUser != null)
                 {
                     // Await the deletion operation to ensure it completes before continuing

@@ -10,16 +10,16 @@ namespace Habitraca.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        
+
         public UserController(IUserService userService)
         {
             _userService = userService;
         }
 
-        [HttpDelete ("id:Guid")]
-        public async Task<ApiResponse<User>> Delete(string id)
-        {
-           return await _userService.DeleteUser(id);
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(string Id)
+           {
+           return Ok(await _userService.DeleteUser(Id));
         }
     }
 }

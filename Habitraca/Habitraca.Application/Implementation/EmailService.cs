@@ -23,6 +23,8 @@ namespace Habitraca.Application.Implementation
                 {
                     HtmlBody = $"<a href='{link}'>Click here to confirm your email</a>"
                 };
+                AttachFile(bodyBuilder, @"C:\Users\Decagon\OneDrive\Pictures\Screenshots\xy.png.png", "xy.png");
+
 
                 var emailMessage = new MimeMessage();
                 emailMessage.From.Add(new MailboxAddress(_emailSettings.DisplayName, _emailSettings.Email));

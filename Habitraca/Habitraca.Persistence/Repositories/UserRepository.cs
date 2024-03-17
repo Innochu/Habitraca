@@ -1,8 +1,6 @@
 ﻿using Habitraca.Application.Interface.Repositories;
 using Habitraca.Domain.Entities;
 using Habitraca.Persistence.DbContextFolder;
-using Habitraca.Persistence.Repositories;
-using System.Threading.Tasks;
 
 namespace Habitraca.Persistence.Repositories
 {
@@ -19,5 +17,6 @@ namespace Habitraca.Persistence.Repositories
         }
 
         public async Task<User> GetUserByIdAsync(string id) => await GetByIdAsync(id);
+       
     }
 }
