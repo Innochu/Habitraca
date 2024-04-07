@@ -57,7 +57,7 @@ if (app.Environment.IsDevelopment())
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;
-    await Seeder.SeedRoles(serviceProvider);
+  //  await Seeder.SeedRoles(serviceProvider);
 }
 
 app.UseHttpsRedirection();

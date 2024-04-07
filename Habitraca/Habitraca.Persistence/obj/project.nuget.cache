@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RwGjukQV7cHSC2d9EnbyzXSst+1VEC5YuA+E8TNQEhPR94SRmxBR3h+7gl1n2CwaMQQBURTEJfXUcS+mMOqaPA==",
+  "dgSpecHash": "1eTwraOX563HRUxGSxphQqjBVsWrxbQaLQTfL8MX9JJ9CLcXncqGXVFz+5JHoG+Bs4BGDioZs2TrD2BsrnWc0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Persistence\\Habitraca.Persistence.csproj",
   "expectedPackageFiles": [
@@ -63,6 +63,8 @@
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\mimekit\\4.4.0\\mimekit.4.4.0.nupkg.sha512",
+    "C:\\Users\\Decagon\\.nuget\\packages\\npgsql\\6.0.0\\npgsql.6.0.0.nupkg.sha512",
+    "C:\\Users\\Decagon\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
