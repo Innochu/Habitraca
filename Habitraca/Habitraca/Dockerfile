@@ -15,7 +15,7 @@ COPY ["Habitraca/Habitraca.Common/Habitraca.Common.csproj", "Habitraca.Common/"]
 COPY ["Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj", "Habitraca.Persistence/"]
 COPY ["Habitraca/Habitraca.Application/Habitraca.Application.csproj", "Habitraca.Application/"]
 COPY ["Habitraca/Habitraca.Domain/Habitraca.Domain.csproj", "Habitraca.Domain/"]  
-RUN dotnet restore "Habitraca/Habitraca/Habitraca.csproj"
+RUN dotnet restore "Habitraca/Habitraca.csproj"
 COPY . .
 WORKDIR "/src/Habitraca"
 RUN dotnet build "Habitraca/Habitraca.csproj" -c Release -o /app/build
