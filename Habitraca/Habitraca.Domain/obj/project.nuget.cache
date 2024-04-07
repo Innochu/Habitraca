@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tyfFNyT98QlySBpjhOiejuYsZ2s9nn5VdLlz1S+2pgwXlvfGhDOYEQ9XsB0LzmiemYc1s7pPCiJPDBDk0Vggrg==",
+  "dgSpecHash": "y99UlCW9cV4ir65vSJm/g4PAkAHsIHJ8JjIwFuejtS5QTu+VQnrwoRG382OHaWYngkklFJ2tb2v1kOk9gu9SDg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Domain\\Habitraca.Domain.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,8 @@
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\mimekit\\4.4.0\\mimekit.4.4.0.nupkg.sha512",
+    "C:\\Users\\Decagon\\.nuget\\packages\\npgsql\\6.0.0\\npgsql.6.0.0.nupkg.sha512",
+    "C:\\Users\\Decagon\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Gu/Qlr12gp7CF9tn1GNtcLDh+RrUTd6xjeIPcd2DXJDl786bVFhzgpl7gqODRuz2ib5nDGvMUhI0lhYNTTvR6Q==",
+  "dgSpecHash": "CVgplAQDQSkCL4NdscjRJ2bnTf1WA4nLlku1xXQuBSHiERKNesYgJS7O48GLhyUiTCuJpEKgnYM6DFepeDl1SQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca\\Habitraca.csproj",
   "expectedPackageFiles": [
@@ -67,6 +67,8 @@
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\mimekit\\4.4.0\\mimekit.4.4.0.nupkg.sha512",
+    "C:\\Users\\Decagon\\.nuget\\packages\\npgsql\\6.0.0\\npgsql.6.0.0.nupkg.sha512",
+    "C:\\Users\\Decagon\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
