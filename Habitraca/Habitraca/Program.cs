@@ -60,6 +60,8 @@ using (var scope = app.Services.CreateScope())
   //  await Seeder.SeedRoles(serviceProvider);
 }
 
+app.UseCors();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
