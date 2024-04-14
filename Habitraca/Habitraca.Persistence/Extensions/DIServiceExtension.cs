@@ -1,6 +1,7 @@
 ﻿using Habitraca.Application.Implementation;
 using Habitraca.Application.Interface.Repositories;
 using Habitraca.Application.Interface.Service;
+using Habitraca.Application.Interfaces.Repositories;
 using Habitraca.Application.Services;
 using Habitraca.Domain.EmailFolder;
 using Habitraca.Persistence.DbContextFolder;
@@ -9,8 +10,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Habitraca.Application.Interfaces.Repositories;
-using Habitraca.Persistence.Repositories;
 using IdentityRole = Microsoft.AspNetCore.Identity.IdentityRole;
 
 
@@ -21,7 +20,7 @@ namespace Habitraca.Persistence.Extensions
         public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<HabitDbContext>(options => 
-            options.UseSqlServer(configuration.GetConnectionString("HabitracaConnection")));
+            options.UseNpgsql(configuration.GetConnectionString("HabitracaConnection")));
 
             services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<IAuthService, AuthService>();

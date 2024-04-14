@@ -20,20 +20,20 @@ namespace Habitraca.Application.AuthEntity
 
         [Required(ErrorMessage = "Password address is required.")]
        
-        public string? Password { get; set; }
-        public string? ConfirmPassword { get; set;}
-        public string? Address { get; set;}
+        public string Password { get; set; } = string.Empty.ToString();
+        public string ConfirmPassword { get; set;} = string.Empty;
+        public string Address { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "StateOfOrigin is required.")]
-        public string? StateOfOrigin { get; set; }
-        public string? LGA { get; set;}
+        public string StateOfOrigin { get; set; } = string.Empty;
+        public string LGA { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Country is required.")]
-        public string? Country { get; set;}
+        public string Country { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "StateOfResidence is required.")]
        
-        public string? StateOfResidence { get; set;}
+        public string StateOfResidence { get; set; } = string.Empty;
         public Gender Gender { get; set;}
 
     }
