@@ -33,6 +33,11 @@ namespace Habitraca.Application.Services
 
         public async Task<ApiResponse<RegisterResponseDto>> RegisterAsync(SignUp userSignup)
         {
+            if (userSignup == null)
+            {
+                return ApiResponse<RegisterResponseDto>.Failed("Invalid user signup data.", StatusCodes.Status400BadRequest, new List<string>());
+            }
+
             var user = await _userManager.FindByEmailAsync(userSignup.Email);
             if (user != null)
             {
@@ -91,7 +96,7 @@ namespace Habitraca.Application.Services
             catch (Exception ex)
             {
                 //_logger.LogError(ex, "Error occurred while adding a manager " + ex.InnerException);
-                return ApiResponse<RegisterResponseDto>.Failed("Error creating user.", StatusCodes.Status500InternalServerError, new List<string>() { ex.InnerException.ToString() });
+                return ApiResponse<RegisterResponseDto>.Failed("Error creating user." + ex.InnerException, StatusCodes.Status500InternalServerError, new List<string>());
             }
         }
         public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
@@ -109,9 +114,15 @@ namespace Habitraca.Application.Services
 				{
 					case { Succeeded: true }:
 						var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+
+                        if (role == null)
+                        {
+                            return ApiResponse<LoginResponseDto>.Failed("roles not found.", StatusCodes.Status400BadRequest, new List<string>());
+                        }
 						var response = new LoginResponseDto
 						{
 							JWToken = GenerateJwtToken(user, role)
+
 						};
 						return ApiResponse<LoginResponseDto>.Success(response, "Logged In Successfully", StatusCodes.Status200OK);
 

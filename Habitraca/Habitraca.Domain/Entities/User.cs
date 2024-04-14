@@ -1,19 +1,27 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Habitraca.Domain.Entities
 {
     public class User : IdentityUser
     {
-       
-        public string FirstName { get; set; } =string.Empty;
-        public string LastName { get; set; } = string.Empty;    
-       
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+
         public string Password { get; set; } = string.Empty;
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+      
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
         public bool IsDeleted { get; set; }
-        public string? PasswordResetToken { get; set; }
-        public DateTime? ResetTokenExpires { get; set; }
-        public string? ImageUrl { get; set; }
-        public DateTime DateModified { get; set; }
+
+       
+        public string PasswordResetToken { get; set; } = string.Empty;
+        public DateTime ResetTokenExpires { get; set; } = DateTime.UtcNow;
+
+        public string ImageUrl { get; set; } = string.Empty;
+
+      
+        public DateTime DateModified { get; set; } = DateTime.UtcNow;
     }
 }
