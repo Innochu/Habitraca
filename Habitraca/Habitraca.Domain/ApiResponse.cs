@@ -13,7 +13,7 @@
             Succeeded = succeeded;
             Message = message ?? ""; 
             StatusCode = statusCode;
-            Data = data ?? throw new ArgumentNullException(nameof(data)); 
+            Data = data;
             Errors = errors ?? new List<string>(); 
         }
 
