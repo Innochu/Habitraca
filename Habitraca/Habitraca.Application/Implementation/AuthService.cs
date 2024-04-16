@@ -68,8 +68,8 @@ namespace Habitraca.Application.Services
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(appUser, "User");
-                    //token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
-                    //token = HttpUtility.UrlEncode(token);
+                    token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+                    token = HttpUtility.UrlEncode(token);
                    
                 
                         var response = new RegisterResponseDto()
@@ -81,8 +81,6 @@ namespace Habitraca.Application.Services
                             LastName = appUser.LastName,
                             Token = token
                         };
-
-
 
                         return ApiResponse<RegisterResponseDto>.Success(response, "User registered successfully. Please click on the link sent to your email to confirm your account", StatusCodes.Status201Created);
                    

@@ -62,7 +62,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;
-  //  await Seeder.SeedRoles(serviceProvider);
+   await Seeder.SeedRoles(serviceProvider);
 }
 
 app.UseCors();
