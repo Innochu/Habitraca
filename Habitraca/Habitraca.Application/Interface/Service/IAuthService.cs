@@ -9,5 +9,6 @@ namespace Habitraca.Application.Interface.Service
     {
         Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO);
         Task<ApiResponse<RegisterResponseDto>> RegisterAsync(SignUp userSignup);
+
     }
 }
