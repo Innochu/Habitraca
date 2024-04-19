@@ -70,17 +70,22 @@ namespace Habitraca.Application.Services
                     await _userManager.AddToRoleAsync(appUser, "User");
                     token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
                     token = HttpUtility.UrlEncode(token);
-                   
-                
-                        var response = new RegisterResponseDto()
+
+                    var generatedUsername = GenerateUniqueUsername(appUser.FirstName, appUser.LastName);
+                  
+                    // Update the user object with the generated username
+                    appUser.UserName = generatedUsername;
+
+                    var response = new RegisterResponseDto()
                         {
                             Id = appUser.Id,
                             Email = appUser.Email,
                             PhoneNumber = appUser.PhoneNumber,
                             FirstName = appUser.FirstName,
                             LastName = appUser.LastName,
-                            Token = token
-                        };
+                            Token = token,
+                            Username = generatedUsername
+                    };
 
                         return ApiResponse<RegisterResponseDto>.Success(response, "User registered successfully. Please click on the link sent to your email to confirm your account", StatusCodes.Status201Created);
                    
@@ -97,6 +102,34 @@ namespace Habitraca.Application.Services
                 return ApiResponse<RegisterResponseDto>.Failed("Error creating user." + ex.InnerException, StatusCodes.Status500InternalServerError, new List<string>());
             }
         }
+
+        private string GenerateUniqueUsername(string firstName, string lastName)
+        {
+            // Generate a username based on the user's first and last name
+            string username = $"{lastName.Substring(0, 1)}-{firstName}";
+
+            // Check if the username already exists
+            var existingUser = _userManager.Users.FirstOrDefault(u => u.UserName == username);
+
+            // If the username already exists, add a number to the end of the username
+            if (existingUser != null)
+            {
+                int i = 2;
+                while (true)
+                {
+                    existingUser = _userManager.Users.FirstOrDefault(u => u.UserName == $"{username}{i}");
+                    if (existingUser == null)
+                    {
+                        username += i;
+                        break;
+                    }
+                    i++;
+                }
+            }
+
+            return username;
+        }
+
         public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
 		{
 			try

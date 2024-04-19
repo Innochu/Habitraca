@@ -3,6 +3,7 @@ using Habitraca.Application.Interface.Service;
 using Habitraca.Domain;
 using Habitraca.Domain.AuthEntity;
 using Habitraca.Domain.Entities;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +16,14 @@ namespace Habitraca.Controllers
     {
         private readonly IAuthService _authService;
         private readonly IEmailService _emailService;
+        private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AuthController(IAuthService authService, IEmailService emailService, SignInManager<User> signInManager)
+        public AuthController(IAuthService authService, IEmailService emailService, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _authService = authService;
             _emailService = emailService;
+            _userManager = userManager;
             _signInManager = signInManager;
         }
 
@@ -86,5 +89,8 @@ namespace Habitraca.Controllers
 
             return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
         }
+
+
+
     }
 }

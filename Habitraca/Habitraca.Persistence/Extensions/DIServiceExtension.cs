@@ -4,6 +4,7 @@ using Habitraca.Application.Interface.Service;
 using Habitraca.Application.Interfaces.Repositories;
 using Habitraca.Application.Services;
 using Habitraca.Domain.EmailFolder;
+using Habitraca.Domain.Entities;
 using Habitraca.Persistence.DbContextFolder;
 using Habitraca.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -23,6 +24,7 @@ namespace Habitraca.Persistence.Extensions
             options.UseNpgsql(configuration.GetConnectionString("HabitracaConnection")));
 
             services.AddScoped<RoleManager<IdentityRole>>();
+            services.AddScoped<UserManager<User>>();
             services.AddScoped<IAuthService, AuthService>();
 
             // Register Email services
