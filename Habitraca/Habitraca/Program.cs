@@ -68,6 +68,8 @@ using (var scope = app.Services.CreateScope())
 app.UseCors();
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+
 
 app.UseAuthorization();
 

@@ -7,5 +7,6 @@ namespace Habitraca.Application.Interface.Repositories
     {
         Task DeleteUser(User user);
         Task<User> GetUserByIdAsync(string id);
+        Task<User> UpdateAsync(User user);
     }
 }
