@@ -13,7 +13,7 @@ namespace Habitraca.Domain.Entities
       
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; } = true;
 
        
         public string PasswordResetToken { get; set; } = string.Empty;

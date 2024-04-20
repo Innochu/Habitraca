@@ -1,4 +1,5 @@
 ﻿using Habitraca.Application.Interface.Service;
+using Habitraca.Application.Services;
 using Habitraca.Domain;
 using Habitraca.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -21,5 +22,22 @@ namespace Habitraca.Controllers
            {
            return Ok(await _userService.DeleteUser(Id));
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Deactivate(string id)
+        {
+            var result = await _userService.DeactivateUser(id);
+
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+
     }
 }

@@ -131,52 +131,61 @@ namespace Habitraca.Application.Services
         }
 
         public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
-		{
-			try
-			{
-				var user = await _userManager.FindByEmailAsync(loginDTO.Email);
-				if (user == null)
-				{
-					return ApiResponse<LoginResponseDto>.Failed("User not found.", StatusCodes.Status404NotFound, new List<string>());
-				}
-				var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, lockoutOnFailure: false);
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+                if (user == null)
+                {
+                    return ApiResponse<LoginResponseDto>.Failed("User not found.", StatusCodes.Status404NotFound, new List<string>());
+                }
 
-				switch (result)
-				{
-					case { Succeeded: true }:
-						var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+                var activeUser = await _unitOfWork.UserRepository.FindAsync(x => x.IsActive == true);
+                if (activeUser == null)
+                {
+                    return ApiResponse<LoginResponseDto>.Failed("User is deactivated", StatusCodes.Status400BadRequest, new List<string>());
+                }
+
+                var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, lockoutOnFailure: false);
+
+                switch (result)
+                {
+                    case { Succeeded: true }:
+                        var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
 
                         if (role == null)
                         {
-                            return ApiResponse<LoginResponseDto>.Failed("roles not found.", StatusCodes.Status400BadRequest, new List<string>());
+                            return ApiResponse<LoginResponseDto>.Failed("Roles not found.", StatusCodes.Status400BadRequest, new List<string>());
                         }
-						var response = new LoginResponseDto
-						{
-							JWToken = GenerateJwtToken(user, role)
 
-						};
-						return ApiResponse<LoginResponseDto>.Success(response, "Logged In Successfully", StatusCodes.Status200OK);
+                        var response = new LoginResponseDto
+                        {
+                            JWToken = GenerateJwtToken(user, role)
 
-					case { IsLockedOut: true }:
-						return ApiResponse<LoginResponseDto>.Failed($"Account is locked out. Please try again later or contact support." +
-							$" You can unlock your account after {_userManager.Options.Lockout.DefaultLockoutTimeSpan.TotalMinutes} minutes.", StatusCodes.Status403Forbidden, new List<string>());
+                        };
 
-					case { RequiresTwoFactor: true }:
-						return ApiResponse<LoginResponseDto>.Failed("Two-factor authentication is required.", StatusCodes.Status401Unauthorized, new List<string>());
+                        return ApiResponse<LoginResponseDto>.Success(response, "Logged In Successfully", StatusCodes.Status200OK);
 
-					case { IsNotAllowed: true }:
-						return ApiResponse<LoginResponseDto>.Failed("Login failed. Email confirmation is required.", StatusCodes.Status401Unauthorized, new List<string>());
+                    case { IsLockedOut: true }:
+                        return ApiResponse<LoginResponseDto>.Failed($"Account is locked out. Please try again later or contact support." +
+                            $" You can unlock your account after {_userManager.Options.Lockout.DefaultLockoutTimeSpan.TotalMinutes} minutes.", StatusCodes.Status403Forbidden, new List<string>());
 
-					default:
-						return ApiResponse<LoginResponseDto>.Failed("Login failed. Invalid email or password.", StatusCodes.Status401Unauthorized, new List<string>());
-				}
-			}
-			catch (Exception ex)
-			{
-				return ApiResponse<LoginResponseDto>.Failed("Some error occurred while loggin in." + ex.InnerException, StatusCodes.Status500InternalServerError, new List<string>());
-			}
-		}
-   		private string GenerateJwtToken(User user, string role)
+                    case { RequiresTwoFactor: true }:
+                        return ApiResponse<LoginResponseDto>.Failed("Two-factor authentication is required.", StatusCodes.Status401Unauthorized, new List<string>());
+
+                    case { IsNotAllowed: true }:
+                        return ApiResponse<LoginResponseDto>.Failed("Login failed. Email confirmation is required.", StatusCodes.Status401Unauthorized, new List<string>());
+
+                    default:
+                        return ApiResponse<LoginResponseDto>.Failed("Login failed. Invalid email or password.", StatusCodes.Status401Unauthorized, new List<string>());
+                }
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<LoginResponseDto>.Failed("Some error occurred while logging in." + ex.InnerException, StatusCodes.Status500InternalServerError, new List<string>());
+            }
+        }
+        private string GenerateJwtToken(User user, string role)
 		{
 			var jwtSettings = _config.GetSection("JwtSettings:Secret").Value;
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings));

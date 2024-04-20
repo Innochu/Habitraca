@@ -17,6 +17,13 @@ namespace Habitraca.Persistence.Repositories
         }
 
         public async Task<User> GetUserByIdAsync(string id) => await GetByIdAsync(id);
-       
+
+        public async Task<User> UpdateAsync(User user)
+        {
+            Update(user);
+            await SaveChangesAsync();
+            return user;
+        }
+
     }
 }

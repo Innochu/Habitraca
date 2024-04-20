@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Habitraca.Persistence.Migrations
 {
-    public partial class aaa : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace Habitraca.Persistence.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     PasswordResetToken = table.Column<string>(type: "text", nullable: false),
                     ResetTokenExpires = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ImageUrl = table.Column<string>(type: "text", nullable: false),
@@ -166,8 +166,8 @@ namespace Habitraca.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "DateModified", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "IsDeleted", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PasswordResetToken", "PhoneNumber", "PhoneNumberConfirmed", "ResetTokenExpires", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "644f893a-9cfc-4d22-aecb-f91974c3d0f4", 0, "e029db09-7848-425c-b222-148074cfdf68", new DateTime(2024, 4, 11, 15, 53, 37, 245, DateTimeKind.Utc).AddTicks(908), new DateTime(2024, 4, 11, 15, 53, 37, 245, DateTimeKind.Utc).AddTicks(915), "Chuksinnocent1@gmail.com", false, "Innocent", "", false, "Chukwudi", false, null, null, null, "Password", null, "", "07013238817", false, new DateTime(2024, 4, 11, 15, 53, 37, 245, DateTimeKind.Utc).AddTicks(914), "2597b69b-159b-4f42-b427-b715b5c843df", false, null });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "DateModified", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PasswordResetToken", "PhoneNumber", "PhoneNumberConfirmed", "ResetTokenExpires", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "85cf5e35-d610-4442-8120-0ee97f8422f0", 0, "b4b0af15-3334-4dbf-a8b4-aa5c0667008d", new DateTime(2024, 4, 20, 0, 59, 50, 756, DateTimeKind.Utc).AddTicks(975), new DateTime(2024, 4, 20, 0, 59, 50, 756, DateTimeKind.Utc).AddTicks(980), "Chuksinnocent1@gmail.com", false, "Innocent", "", true, "Chukwudi", false, null, null, null, "Password", null, "", "07013238817", false, new DateTime(2024, 4, 20, 0, 59, 50, 756, DateTimeKind.Utc).AddTicks(980), "466504b1-2149-455b-8f19-d263f7bead87", false, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

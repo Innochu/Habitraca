@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Habitraca.Persistence.Migrations
 {
     [DbContext(typeof(HabitDbContext))]
-    [Migration("20240411155337_aaa")]
-    partial class aaa
+    [Migration("20240420005951_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,7 +57,7 @@ namespace Habitraca.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
@@ -122,24 +122,24 @@ namespace Habitraca.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "644f893a-9cfc-4d22-aecb-f91974c3d0f4",
+                            Id = "85cf5e35-d610-4442-8120-0ee97f8422f0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e029db09-7848-425c-b222-148074cfdf68",
-                            CreatedAt = new DateTime(2024, 4, 11, 15, 53, 37, 245, DateTimeKind.Utc).AddTicks(908),
-                            DateModified = new DateTime(2024, 4, 11, 15, 53, 37, 245, DateTimeKind.Utc).AddTicks(915),
+                            ConcurrencyStamp = "b4b0af15-3334-4dbf-a8b4-aa5c0667008d",
+                            CreatedAt = new DateTime(2024, 4, 20, 0, 59, 50, 756, DateTimeKind.Utc).AddTicks(975),
+                            DateModified = new DateTime(2024, 4, 20, 0, 59, 50, 756, DateTimeKind.Utc).AddTicks(980),
                             Email = "Chuksinnocent1@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Innocent",
                             ImageUrl = "",
-                            IsDeleted = false,
+                            IsActive = true,
                             LastName = "Chukwudi",
                             LockoutEnabled = false,
                             Password = "Password",
                             PasswordResetToken = "",
                             PhoneNumber = "07013238817",
                             PhoneNumberConfirmed = false,
-                            ResetTokenExpires = new DateTime(2024, 4, 11, 15, 53, 37, 245, DateTimeKind.Utc).AddTicks(914),
-                            SecurityStamp = "2597b69b-159b-4f42-b427-b715b5c843df",
+                            ResetTokenExpires = new DateTime(2024, 4, 20, 0, 59, 50, 756, DateTimeKind.Utc).AddTicks(980),
+                            SecurityStamp = "466504b1-2149-455b-8f19-d263f7bead87",
                             TwoFactorEnabled = false
                         });
                 });
