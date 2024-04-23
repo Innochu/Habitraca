@@ -19,7 +19,7 @@ namespace Habitraca.Controllers
 
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Delete(string Id)
-           {
+        {
            return Ok(await _userService.DeleteUser(Id));
         }
 
