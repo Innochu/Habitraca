@@ -2,6 +2,7 @@
 using Habitraca.Application.Interface.Service;
 using Habitraca.Domain;
 using Habitraca.Domain.AuthEntity;
+using Habitraca.Domain.EmailFolder;
 using Habitraca.Domain.Entities;
 
 using Microsoft.AspNetCore.Authentication;
@@ -86,6 +87,8 @@ namespace Habitraca.Controllers
             await _signInManager.SignOutAsync();
 
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+        //    await _emailService.SendMailAsync(emailEntity);
 
             return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
         }

@@ -2,7 +2,10 @@
 using Habitraca.Application.Interfaces.Repositories;
 using Habitraca.Domain;
 using Habitraca.Domain.Entities;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+
 
 namespace Habitraca.Application.Implementation
 {
@@ -10,11 +13,13 @@ namespace Habitraca.Application.Implementation
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly SignInManager<User> _signInManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserService(IUnitOfWork unitOfWork, SignInManager<User> signInManager)
+        public UserService(IUnitOfWork unitOfWork, SignInManager<User> signInManager, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _signInManager = signInManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<ApiResponse<User>> DeactivateUser(string id)
@@ -29,7 +34,8 @@ namespace Habitraca.Application.Implementation
                     await _unitOfWork.UserRepository.UpdateAsync(findUser);
                     
                         await _signInManager.SignOutAsync();
-                        return ApiResponse<User>.Success(findUser, "User successfully deactivated", 200);
+                        await _httpContextAccessor.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+                    return ApiResponse<User>.Success(findUser, "User successfully deactivated", 200);
                 }
                 else
                 {
