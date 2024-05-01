@@ -37,6 +37,21 @@ namespace Habitraca.Controllers
                 return BadRequest(result);
             }
         }
+         
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Activate(string id)
+        {
+            var result = await _userService.ActivateUser(id);
+
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
 
 
     }

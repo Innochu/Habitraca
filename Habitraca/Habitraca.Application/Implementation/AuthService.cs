@@ -13,22 +13,27 @@ using Habitraca.Domain;
 using Microsoft.AspNetCore.Http;
 using System.Web;
 using Habitraca.Application.AuthEntity;
+using Habitraca.Application.Implementation;
+using Habitraca.Domain.EmailFolder;
 
 namespace Habitraca.Application.Services
 {
     public class AuthService : IAuthService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailService _emailService;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _config;
         private readonly SignInManager<User> _signInManager;
 
-        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config, IUnitOfWork unitOfWork)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration config,
+            IUnitOfWork unitOfWork, IEmailService emailService)
         {
             _userManager = userManager;
 			_config = config;
             _signInManager = signInManager;
             _unitOfWork = unitOfWork;
+            _emailService = emailService;
         }
 
         public async Task<ApiResponse<RegisterResponseDto>> RegisterAsync(SignUp userSignup)
@@ -102,7 +107,6 @@ namespace Habitraca.Application.Services
                 return ApiResponse<RegisterResponseDto>.Failed("Error creating user." + ex.InnerException, StatusCodes.Status500InternalServerError, new List<string>());
             }
         }
-
         private string GenerateUniqueUsername(string firstName, string lastName)
         {
             // Generate a username based on the user's first and last name
@@ -129,7 +133,6 @@ namespace Habitraca.Application.Services
 
             return username;
         }
-
         public async Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO)
         {
             try
@@ -212,6 +215,91 @@ namespace Habitraca.Application.Services
 
 			return new JwtSecurityTokenHandler().WriteToken(token);
 		}
+        public  ApiResponse<string> ExtractUserIdFromToken(string authToken)
+        {
+            try
+            {
+                var token = authToken.Replace("Bearer ", "");
 
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+
+                var userId = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == JwtRegisteredClaimNames.Sub)?.Value;
+
+                if (string.IsNullOrWhiteSpace(userId))
+                {
+                    return new ApiResponse<string>(false, "Invalid or expired token.", 401, null, new List<string>());
+                }
+
+                return new ApiResponse<string>(true, "User ID extracted successfully.", 200, userId, new List<string>());
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<string>(false, "Error extracting user ID from token.", 500, null, new List<string> { ex.Message });
+            }
+        }
+        public async Task<ApiResponse<string>> ChangePasswordAsync(User user, string currentPassword, string newPassword)
+        {
+            try
+            {
+                var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+
+                if (result.Succeeded)
+                {
+                    return new ApiResponse<string>(true, "Password changed successfully.", 200, null, new List<string>());
+                }
+                else
+                {
+                    return new ApiResponse<string>(false, "Password change failed.", 400, null, result.Errors.Select(error => error.Description).ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "Error occurred while changing password");
+                var errorList = new List<string> { ex.Message };
+                return new ApiResponse<string>(true, "Error occurred while changing password", 500, null, errorList);
+            }
+        }
+        public async Task<ApiResponse<string>> ForgotPasswordAsync(string email)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+
+                if (user == null || !user.EmailConfirmed)
+                {
+                    return new ApiResponse<string>(false, "User not found or email not confirmed.", StatusCodes.Status404NotFound, null, new List<string>());
+                }
+
+                string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                token = HttpUtility.UrlEncode(token);
+
+                user.PasswordResetToken = token;
+                user.ResetTokenExpires = DateTime.UtcNow.AddHours(24);
+
+                await _userManager.UpdateAsync(user);
+
+                var resetPasswordUrl = "https://localhost:7226/api/Authentication/reset-password?email=" + Uri.EscapeDataString(email) + "&token=" + token;
+                //var resetPasswordUrl = "https://localhost:7226/api/Authentication/reset-password?email=" + email + "&token=" + token;
+
+
+                var mailRequest = new EmailEntity
+                {
+                    ReceiverEmail = email,
+                    Subject = "Your Savi Password Reset Instructions",
+                    Body = $"Please reset your password by clicking <a href='{resetPasswordUrl}'>here</a>."
+                };
+                await _emailService.SendMailAsync(mailRequest);
+
+                return new ApiResponse<string>(true, "Password reset email sent successfully.", 200, null, new List<string>());
+            }
+            catch (Exception)
+            {
+               // _logger.LogError(ex, "Error occurred while processing forgot password for user with email {Email}", email);
+                var errorList = new List<string> { "An unexpected error occurred while processing the forgot password request." };
+                return new ApiResponse<string>(true, "Error occurred while processing forgot password", 500, null, errorList);
+            }
+        }
     }
 }

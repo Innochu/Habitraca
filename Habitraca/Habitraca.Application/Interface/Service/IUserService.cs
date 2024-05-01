@@ -7,5 +7,6 @@ namespace Habitraca.Application.Interface.Service
     {
         Task<ApiResponse<User>> DeleteUser(string id);
         Task<ApiResponse<User>> DeactivateUser(string id);
+        Task<ApiResponse<User>> ActivateUser(string id);
     }
 }

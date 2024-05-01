@@ -1,4 +1,5 @@
 ﻿using Habitraca.Application.AuthEntity;
+using Habitraca.Application.DtoFolder;
 using Habitraca.Application.Interface.Service;
 using Habitraca.Domain;
 using Habitraca.Domain.AuthEntity;
@@ -84,16 +85,93 @@ namespace Habitraca.Controllers
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            try
+            {
+                // Get the current user's email
+                var userEmail = HttpContext.User.Identity.Name;
 
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+                // Sign out the user
+                await _signInManager.SignOutAsync();
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-        //    await _emailService.SendMailAsync(emailEntity);
+                // Prepare the email notification with the user's email
+                var emailEntity = new EmailEntity
+                {
+                    ReceiverEmail = userEmail,
+                    Subject = "Logout Notification",
+                    Body = "You have successfully logged out! Thank you for using Habitrac-Paddy."
+                };
 
-            return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
+                // Send the email notification
+                await _emailService.SendMailAsync(emailEntity);
+
+                return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                return StatusCode(500, new ApiResponse<string>(false, "An error occurred during logout", 500, ex.Message, null));
+            }
         }
 
+        [HttpPut("update-password")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordDto model, [FromHeader(Name = "Authorization")] string authToken)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse<string>(false, "Invalid model state.", 400, null, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
+            }
 
+            if (string.IsNullOrWhiteSpace(authToken))
+            {
+                return Unauthorized(new ApiResponse<string>(false, "Authorization token is missing.", 401, null, new List<string>()));
+            }
 
+            var userIdResponse = _authService.ExtractUserIdFromToken(authToken);
+
+            if (!userIdResponse.Succeeded)
+            {
+                return Unauthorized(userIdResponse);
+            }
+            var userId = userIdResponse.Data;
+
+            var user = await _userManager.FindByEmailAsync(userId);
+
+            if (user == null)
+            {
+                return Unauthorized(new ApiResponse<string>(false, "User not found.", 401, null, new List<string>()));
+            }
+
+            var response = await _authService.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            if (response.Succeeded)
+            {
+                return Ok(new ApiResponse<string>(true, response.Message, response.StatusCode, null, new List<string>()));
+            }
+            else
+            {
+                return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
+            }
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ApiResponse<string>(false, "Invalid model state.", 400, null, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
+            }
+
+            var response = await _authService.ForgotPasswordAsync(model.Email);
+
+            if (response.Succeeded)
+            {
+                return Ok(new ApiResponse<string>(true, response.Message, response.StatusCode, null, new List<string>()));
+            }
+            else
+            {
+                return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
+            }
+        }
     }
 }
