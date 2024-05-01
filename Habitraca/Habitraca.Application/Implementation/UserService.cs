@@ -48,6 +48,31 @@ namespace Habitraca.Application.Implementation
             }
         }
 
+        public async Task<ApiResponse<User>> ActivateUser(string id)
+        {
+            try
+            {
+                var findUser = await _unitOfWork.UserRepository.GetUserByIdAsync(id);
+
+                if (findUser != null)
+                {
+                    findUser.IsActive = true;
+                    await _unitOfWork.UserRepository.UpdateAsync(findUser);
+
+                   
+                    return ApiResponse<User>.Success(findUser, "User successfully restored", 200);
+                }
+                else
+                {
+                    return ApiResponse<User>.Failed("No user found", 400, new List<string>());
+                }
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<User>.Failed("Error occurred while activating user. Try again.", 500, new List<string>() { ex.Message });
+            }
+        }
+
         public async Task<ApiResponse<User>> DeleteUser(string id)
         {
           

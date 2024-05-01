@@ -84,15 +84,34 @@ namespace Habitraca.Controllers
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            try
+            {
+                // Get the current user's email
+                var userEmail = HttpContext.User.Identity.Name;
 
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+                // Sign out the user
+                await _signInManager.SignOutAsync();
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-        //    await _emailService.SendMailAsync(emailEntity);
+                // Prepare the email notification with the user's email
+                var emailEntity = new EmailEntity
+                {
+                    ReceiverEmail = userEmail,
+                    Subject = "Logout Notification",
+                    Body = "You have successfully logged out! Thank you for using Habitrac-Paddy."
+                };
 
-            return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
+                // Send the email notification
+                await _emailService.SendMailAsync(emailEntity);
+
+                return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                return StatusCode(500, new ApiResponse<string>(false, "An error occurred during logout", 500, ex.Message, null));
+            }
         }
-
 
 
     }
