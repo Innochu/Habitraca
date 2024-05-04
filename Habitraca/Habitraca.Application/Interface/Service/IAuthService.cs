@@ -10,7 +10,7 @@ namespace Habitraca.Application.Interface.Service
     {
         Task<ApiResponse<LoginResponseDto>> LoginAsync(Login loginDTO);
         Task<ApiResponse<RegisterResponseDto>> RegisterAsync(SignUp userSignup);
-        ApiResponse<string> ExtractUserIdFromToken(string authToken);
+        Task<ApiResponse<string>> ResetPasswordAsync(string email, string token, string newPassword);
         Task<ApiResponse<string>> ChangePasswordAsync(User user, string currentPassword, string newPassword);
         Task<ApiResponse<string>> ForgotPasswordAsync(string email);
     }
