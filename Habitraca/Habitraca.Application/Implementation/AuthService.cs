@@ -30,7 +30,7 @@ namespace Habitraca.Application.Services
             IUnitOfWork unitOfWork, IEmailService emailService)
         {
             _userManager = userManager;
-			_config = config;
+            _config = config;
             _signInManager = signInManager;
             _unitOfWork = unitOfWork;
             _emailService = emailService;
@@ -77,23 +77,23 @@ namespace Habitraca.Application.Services
                     token = HttpUtility.UrlEncode(token);
 
                     var generatedUsername = GenerateUniqueUsername(appUser.FirstName, appUser.LastName);
-                  
+
                     // Update the user object with the generated username
                     appUser.UserName = generatedUsername;
 
                     var response = new RegisterResponseDto()
-                        {
-                            Id = appUser.Id,
-                            Email = appUser.Email,
-                            PhoneNumber = appUser.PhoneNumber,
-                            FirstName = appUser.FirstName,
-                            LastName = appUser.LastName,
-                            Token = token,
-                            Username = generatedUsername
+                    {
+                        Id = appUser.Id,
+                        Email = appUser.Email,
+                        PhoneNumber = appUser.PhoneNumber,
+                        FirstName = appUser.FirstName,
+                        LastName = appUser.LastName,
+                        Token = token,
+                        Username = generatedUsername
                     };
 
-                        return ApiResponse<RegisterResponseDto>.Success(response, "User registered successfully. Please click on the link sent to your email to confirm your account", StatusCodes.Status201Created);
-                   
+                    return ApiResponse<RegisterResponseDto>.Success(response, "User registered successfully. Please click on the link sent to your email to confirm your account", StatusCodes.Status201Created);
+
                 }
                 else
                 {
@@ -189,53 +189,66 @@ namespace Habitraca.Application.Services
             }
         }
         private string GenerateJwtToken(User user, string role)
-		{
-			var jwtSettings = _config.GetSection("JwtSettings:Secret").Value;
-			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings));
-			var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        {
+            var jwtSettings = _config.GetSection("JwtSettings:Secret").Value;
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-			var claims = new[]
-			{
-				new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-				new Claim(JwtRegisteredClaimNames.Email, user.Email),
-				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-				new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName+" "+user    .LastName),
-				new Claim(ClaimTypes.Role, role)
-			};
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName+" "+user    .LastName),
+                new Claim(ClaimTypes.Role, role)
+            };
 
-			var token = new JwtSecurityToken(
+            var token = new JwtSecurityToken(
                 issuer: _config.GetValue<string>("JwtSettings:ValidIssuer"),
                 audience: _config.GetValue<string>("JwtSettings:ValidAudience"),
                 //issuer: null,
-				//audience: null,
-				claims: claims,
-				expires: DateTime.UtcNow.AddMinutes(int.Parse(_config.GetSection("JwtSettings:AccessTokenExpiration").Value)),
-				signingCredentials: credentials
-			);
+                //audience: null,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(int.Parse(_config.GetSection("JwtSettings:AccessTokenExpiration").Value)),
+                signingCredentials: credentials
+            );
 
-			return new JwtSecurityTokenHandler().WriteToken(token);
-		}
-        public  ApiResponse<string> ExtractUserIdFromToken(string authToken)
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        public async Task<ApiResponse<string>> ResetPasswordAsync(string email, string token, string newPassword)
         {
             try
             {
-                var token = authToken.Replace("Bearer ", "");
+                var user = await _userManager.FindByEmailAsync(email);
 
-                var handler = new JwtSecurityTokenHandler();
-                var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
-
-                var userId = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == JwtRegisteredClaimNames.Sub)?.Value;
-
-                if (string.IsNullOrWhiteSpace(userId))
+                if (user == null)
                 {
-                    return new ApiResponse<string>(false, "Invalid or expired token.", 401, null, new List<string>());
+                    return new ApiResponse<string>(false, "User not found.", 404, null, new List<string>());
                 }
 
-                return new ApiResponse<string>(true, "User ID extracted successfully.", 200, userId, new List<string>());
+                // Additional token validation logic can be added here
+
+                var result = await _userManager.ResetPasswordAsync(user, token, newPassword);
+
+                if (result.Succeeded)
+                {
+                    // Update user properties if needed
+                    user.PasswordResetToken = null;
+                    user.ResetTokenExpires = default;
+                    await _userManager.UpdateAsync(user);
+
+                    return new ApiResponse<string>(true, "Password reset successful.", 200, null, new List<string>());
+                }
+                else
+                {
+                    return new ApiResponse<string>(false, "Password reset failed.", 400, null, result.Errors.Select(error => error.Description).ToList());
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return new ApiResponse<string>(false, "Error extracting user ID from token.", 500, null, new List<string> { ex.Message });
+                // _logger.LogError(ex, "Error occurred while resetting password for user with email {Email}", email);
+                var errorList = new List<string> { "An unexpected error occurred while resetting the password." };
+                return new ApiResponse<string>(true, "Error occurred while resetting password", 500, null, errorList);
             }
         }
         public async Task<ApiResponse<string>> ChangePasswordAsync(User user, string currentPassword, string newPassword)
@@ -266,39 +279,35 @@ namespace Habitraca.Application.Services
             {
                 var user = await _userManager.FindByEmailAsync(email);
 
-                if (user == null || !user.EmailConfirmed)
+                if (user == null)
                 {
                     return new ApiResponse<string>(false, "User not found or email not confirmed.", StatusCodes.Status404NotFound, null, new List<string>());
                 }
 
                 string token = await _userManager.GeneratePasswordResetTokenAsync(user);
-
                 token = HttpUtility.UrlEncode(token);
-
                 user.PasswordResetToken = token;
                 user.ResetTokenExpires = DateTime.UtcNow.AddHours(24);
-
                 await _userManager.UpdateAsync(user);
 
                 var resetPasswordUrl = "https://localhost:7226/api/Authentication/reset-password?email=" + Uri.EscapeDataString(email) + "&token=" + token;
-                //var resetPasswordUrl = "https://localhost:7226/api/Authentication/reset-password?email=" + email + "&token=" + token;
-
 
                 var mailRequest = new EmailEntity
                 {
                     ReceiverEmail = email,
-                    Subject = "Your Savi Password Reset Instructions",
+                    Subject = "Habit-Trac Password Reset Instructions",
                     Body = $"Please reset your password by clicking <a href='{resetPasswordUrl}'>here</a>."
                 };
+
                 await _emailService.SendMailAsync(mailRequest);
 
                 return new ApiResponse<string>(true, "Password reset email sent successfully.", 200, null, new List<string>());
             }
-            catch (Exception)
+            catch (Exception )
             {
-               // _logger.LogError(ex, "Error occurred while processing forgot password for user with email {Email}", email);
+                // _logger.LogError(ex, "Error occurred while processing forgot password for user with email {Email}", email);
                 var errorList = new List<string> { "An unexpected error occurred while processing the forgot password request." };
-                return new ApiResponse<string>(true, "Error occurred while processing forgot password", 500, null, errorList);
+                return new ApiResponse<string>(false, "Error occurred while processing forgot password", 500, null, errorList);
             }
         }
     }

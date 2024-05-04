@@ -23,7 +23,7 @@ namespace Habitraca.Controllers
            return Ok(await _userService.DeleteUser(Id));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Deactivate/{id}")]
         public async Task<IActionResult> Deactivate(string id)
         {
             var result = await _userService.DeactivateUser(id);
@@ -38,7 +38,7 @@ namespace Habitraca.Controllers
             }
         }
          
-        [HttpPut("{id}")]
+        [HttpPut("Activate/{id}")]
         public async Task<IActionResult> Activate(string id)
         {
             var result = await _userService.ActivateUser(id);

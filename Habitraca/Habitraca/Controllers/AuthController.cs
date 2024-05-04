@@ -88,22 +88,26 @@ namespace Habitraca.Controllers
             try
             {
                 // Get the current user's email
-                var userEmail = HttpContext.User.Identity.Name;
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var userEmail = user?.Email;
 
                 // Sign out the user
                 await _signInManager.SignOutAsync();
                 await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
                 // Prepare the email notification with the user's email
-                var emailEntity = new EmailEntity
+                if (!string.IsNullOrEmpty(userEmail))
                 {
-                    ReceiverEmail = userEmail,
-                    Subject = "Logout Notification",
-                    Body = "You have successfully logged out! Thank you for using Habitrac-Paddy."
-                };
+                    var emailEntity = new EmailEntity
+                    {
+                        ReceiverEmail = userEmail,
+                        Subject = "Logout Notification",
+                        Body = "You have successfully logged out! Thank you for using Habitrac-Paddy."
+                    };
 
-                // Send the email notification
-                await _emailService.SendMailAsync(emailEntity);
+                    // Send the email notification
+                    await _emailService.SendMailAsync(emailEntity);
+                }
 
                 return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
             }
@@ -114,35 +118,20 @@ namespace Habitraca.Controllers
             }
         }
 
-        [HttpPut("update-password")]
-        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordDto model, [FromHeader(Name = "Authorization")] string authToken)
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto model)
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
                 return BadRequest(new ApiResponse<string>(false, "Invalid model state.", 400, null, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
             }
 
-            if (string.IsNullOrWhiteSpace(authToken))
-            {
-                return Unauthorized(new ApiResponse<string>(false, "Authorization token is missing.", 401, null, new List<string>()));
-            }
-
-            var userIdResponse = _authService.ExtractUserIdFromToken(authToken);
-
-            if (!userIdResponse.Succeeded)
-            {
-                return Unauthorized(userIdResponse);
-            }
-            var userId = userIdResponse.Data;
-
-            var user = await _userManager.FindByEmailAsync(userId);
-
-            if (user == null)
-            {
-                return Unauthorized(new ApiResponse<string>(false, "User not found.", 401, null, new List<string>()));
-            }
-
-            var response = await _authService.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            var response = await _authService.ResetPasswordAsync(model.Email, model.Token, model.NewPassword);
 
             if (response.Succeeded)
             {
@@ -152,9 +141,9 @@ namespace Habitraca.Controllers
             {
                 return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
             }
-        }
 
-        [HttpPost("forgot-password")]
+        }
+            [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
         {
             if (!ModelState.IsValid)

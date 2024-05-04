@@ -34,7 +34,7 @@ namespace Habitraca.Application.Implementation
                     await _unitOfWork.UserRepository.UpdateAsync(findUser);
                     
                         await _signInManager.SignOutAsync();
-                        await _httpContextAccessor.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+                     //   await _httpContextAccessor.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
                     return ApiResponse<User>.Success(findUser, "User successfully deactivated", 200);
                 }
                 else
