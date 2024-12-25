@@ -36,39 +36,8 @@ namespace Habitraca.Controllers
              {
                 return BadRequest(ApiResponse<string>.Failed("Invalid model state.", StatusCodes.Status400BadRequest, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
             }
-
-            // Call registration service
-            var registrationResult = await _authService.RegisterAsync(userSignup);
-
-            if (registrationResult.Succeeded)
-            {
-                var data = registrationResult.Data;
+             return Ok(await _authService.RegisterAsync(userSignup));
              
-                var confirmationLink = GenerateConfirmEmailLink(data.Id, data.Token);
-                if (confirmationLink != null)
-                {
-                    await _emailService.EmailConfirmation(confirmationLink, data.Email);
-                    return Ok(data);
-                }
-                else
-                {
-                  //  await _userService.DeleteUser(data.Id);
-                    return Ok("Email sending error: Confirmation link is null");
-                }
-            }
-            else
-            {
-                return BadRequest(new { Message = registrationResult.Message, Errors = registrationResult.Errors });
-            }
-           
-            
-
-        }
-
-        private static string GenerateConfirmEmailLink(string id, string token)
-        {
-            var cemail = "https://localhost:7226/api/account/confirm-email?UserId=" + id + "&token=" + token;
-            return cemail;
         }
 
 
@@ -87,80 +56,60 @@ namespace Habitraca.Controllers
         {
             try
             {
-                // Get the current user's email
-                var user = await _userManager.GetUserAsync(HttpContext.User);
-                var userEmail = user?.Email;
-
-                // Sign out the user
                 await _signInManager.SignOutAsync();
                 await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-                // Prepare the email notification with the user's email
-                if (!string.IsNullOrEmpty(userEmail))
-                {
-                    var emailEntity = new EmailEntity
-                    {
-                        ReceiverEmail = userEmail,
-                        Subject = "Logout Notification",
-                        Body = "You have successfully logged out! Thank you for using Habitrac-Paddy."
-                    };
-
-                    // Send the email notification
-                    await _emailService.SendMailAsync(emailEntity);
-                }
 
                 return Ok(new ApiResponse<string>(true, "Logout successful", 200, null, new List<string>()));
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it appropriately
                 return StatusCode(500, new ApiResponse<string>(false, "An error occurred during logout", 500, ex.Message, null));
             }
         }
 
-        [HttpPost("reset-password")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto model)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
+        // [HttpPost("reset-password")]
+        // public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto model)
+        // {
+        //     if (!ModelState.IsValid)
+        //     {
+        //         var errors = ModelState.Values
+        //             .SelectMany(v => v.Errors)
+        //             .Select(e => e.ErrorMessage)
+        //             .ToList();
 
-                return BadRequest(new ApiResponse<string>(false, "Invalid model state.", 400, null, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
-            }
+        //         return BadRequest(new ApiResponse<string>(false, "Invalid model state.", 400, null, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
+        //     }
 
-            var response = await _authService.ResetPasswordAsync(model.Email, model.Token, model.NewPassword);
+        //     var response = await _authService.ResetPasswordAsync(model.Email, model.Token, model.NewPassword);
 
-            if (response.Succeeded)
-            {
-                return Ok(new ApiResponse<string>(true, response.Message, response.StatusCode, null, new List<string>()));
-            }
-            else
-            {
-                return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
-            }
+        //     if (response.Succeeded)
+        //     {
+        //         return Ok(new ApiResponse<string>(true, response.Message, response.StatusCode, null, new List<string>()));
+        //     }
+        //     else
+        //     {
+        //         return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
+        //     }
 
-        }
-            [HttpPost("forgot-password")]
-        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new ApiResponse<string>(false, "Invalid model state.", 400, null, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
-            }
+        // }
+        //     [HttpPost("forgot-password")]
+        // public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
+        // {
+        //     if (!ModelState.IsValid)
+        //     {
+        //         return BadRequest(new ApiResponse<string>(false, "Invalid model state.", 400, null, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
+        //     }
 
-            var response = await _authService.ForgotPasswordAsync(model.Email);
+        //     var response = await _authService.ForgotPasswordAsync(model.Email);
 
-            if (response.Succeeded)
-            {
-                return Ok(new ApiResponse<string>(true, response.Message, response.StatusCode, null, new List<string>()));
-            }
-            else
-            {
-                return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
-            }
-        }
+        //     if (response.Succeeded)
+        //     {
+        //         return Ok(new ApiResponse<string>(true, response.Message, response.StatusCode, null, new List<string>()));
+        //     }
+        //     else
+        //     {
+        //         return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
+        //     }
+        // }
     }
 }
