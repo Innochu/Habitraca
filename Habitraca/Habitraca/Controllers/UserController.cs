@@ -12,9 +12,12 @@ namespace Habitraca.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+         private readonly IAuthService _authService;
+
+        public UserController(IUserService userService, IAuthService authService)
         {
             _userService = userService;
+            _authService = authService;
         }
 
         [HttpDelete("{Id}")]
@@ -53,6 +56,18 @@ namespace Habitraca.Controllers
             }
         }
 
-
+        [HttpGet("UserName/{id}")]
+        public async Task<IActionResult> DisplayUserName(string id)
+        {
+         var result = await _authService.DisplayUserName(id);
+         if (result.Succeeded)
+         {
+            return Ok(result);
+         }
+         else
+         {
+            return BadRequest(result);
+         }
+        }
     }
 }
