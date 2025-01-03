@@ -311,7 +311,6 @@ namespace Habitraca.Application.Services
                 return new ApiResponse<string>(false, "Error occurred while processing forgot password", 500, null, errorList);
             }
         }
-
         public async Task<ApiResponse<string>> DisplayUserName(string id)
         {
            if(string.IsNullOrEmpty(id))
