@@ -13,5 +13,6 @@ namespace Habitraca.Application.Interface.Service
         Task<ApiResponse<string>> ResetPasswordAsync(string email, string token, string newPassword);
         Task<ApiResponse<string>> ChangePasswordAsync(User user, string currentPassword, string newPassword);
         Task<ApiResponse<string>> ForgotPasswordAsync(string email);
+         Task<ApiResponse<string>> DisplayUserName(string id);
     }
 }

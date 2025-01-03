@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca/Habitraca.csproj": {}
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca/Habitraca.csproj": {}
   },
   "projects": {
-    "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj": {
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj",
+        "projectUniqueName": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj",
         "projectName": "Habitraca.Application",
-        "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj",
+        "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj",
         "packagesPath": "/Users/innocentchukwudi/.nuget/packages/",
-        "outputPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Application/obj/",
+        "outputPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/innocentchukwudi/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj": {
-                "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj"
+              "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj": {
+                "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj"
               }
             }
           }
@@ -131,14 +131,14 @@
         }
       }
     },
-    "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj": {
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj",
+        "projectUniqueName": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj",
         "projectName": "Habitraca.Common",
-        "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj",
+        "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj",
         "packagesPath": "/Users/innocentchukwudi/.nuget/packages/",
-        "outputPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Common/obj/",
+        "outputPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Common/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/innocentchukwudi/.nuget/NuGet/NuGet.Config"
@@ -258,14 +258,14 @@
         }
       }
     },
-    "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj": {
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj",
+        "projectUniqueName": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj",
         "projectName": "Habitraca.Domain",
-        "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj",
+        "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj",
         "packagesPath": "/Users/innocentchukwudi/.nuget/packages/",
-        "outputPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/obj/",
+        "outputPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/innocentchukwudi/.nuget/NuGet/NuGet.Config"
@@ -373,14 +373,14 @@
         }
       }
     },
-    "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj": {
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj",
+        "projectUniqueName": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj",
         "projectName": "Habitraca.Persistence",
-        "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj",
+        "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj",
         "packagesPath": "/Users/innocentchukwudi/.nuget/packages/",
-        "outputPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Persistence/obj/",
+        "outputPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/innocentchukwudi/.nuget/NuGet/NuGet.Config"
@@ -395,11 +395,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj": {
-                "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj"
+              "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj": {
+                "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Application/Habitraca.Application.csproj"
               },
-              "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj": {
-                "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj"
+              "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj": {
+                "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj"
               }
             }
           }
@@ -499,14 +499,14 @@
         }
       }
     },
-    "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca/Habitraca.csproj": {
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca/Habitraca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca/Habitraca.csproj",
+        "projectUniqueName": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca/Habitraca.csproj",
         "projectName": "Habitraca",
-        "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca/Habitraca.csproj",
+        "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca/Habitraca.csproj",
         "packagesPath": "/Users/innocentchukwudi/.nuget/packages/",
-        "outputPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca/obj/",
+        "outputPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/innocentchukwudi/.nuget/NuGet/NuGet.Config"
@@ -521,11 +521,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj": {
-                "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj"
+              "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj": {
+                "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Common/Habitraca.Common.csproj"
               },
-              "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj": {
-                "projectPath": "/Users/innocentchukwudi/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj"
+              "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj": {
+                "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj"
               }
             }
           }

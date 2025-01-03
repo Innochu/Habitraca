@@ -2818,26 +2818,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Decagon\\.nuget\\packages\\": {}
+    "/Users/innocentchukwudi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Domain\\Habitraca.Domain.csproj",
+      "projectUniqueName": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj",
       "projectName": "Habitraca.Domain",
-      "projectPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Domain\\Habitraca.Domain.csproj",
-      "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\Habitraca.Domain\\obj\\",
+      "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/Habitraca.Domain.csproj",
+      "packagesPath": "/Users/innocentchukwudi/.nuget/packages/",
+      "outputPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Decagon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/innocentchukwudi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2933,7 +2931,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
       }
     }
   }

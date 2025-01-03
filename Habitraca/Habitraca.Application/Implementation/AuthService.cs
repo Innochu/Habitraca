@@ -15,6 +15,7 @@ using System.Web;
 using Habitraca.Application.AuthEntity;
 using Habitraca.Application.Implementation;
 using Habitraca.Domain.EmailFolder;
+using System.Runtime.CompilerServices;
 
 namespace Habitraca.Application.Services
 {
@@ -61,7 +62,7 @@ namespace Habitraca.Application.Services
                 LastName = userSignup.LastName,
                 Email = userSignup.Email,
                 PhoneNumber = userSignup.PhoneNumber,
-                UserName = userSignup.Email,
+                UserName = GenerateUniqueUsername(userSignup.FirstName, userSignup.LastName),
                 PasswordResetToken = ""
             };
 
@@ -309,6 +310,23 @@ namespace Habitraca.Application.Services
                 var errorList = new List<string> { "An unexpected error occurred while processing the forgot password request." };
                 return new ApiResponse<string>(false, "Error occurred while processing forgot password", 500, null, errorList);
             }
+        }
+
+        public async Task<ApiResponse<string>> DisplayUserName(string id)
+        {
+           if(string.IsNullOrEmpty(id))
+           {
+             return new ApiResponse<string>(false, "Put a valid Id.", StatusCodes.Status404NotFound, null, new List<string>());
+           }
+           var isExist = await _unitOfWork.UserRepository.GetUserByIdAsync(id);
+           if(isExist == null)
+           {
+            return new ApiResponse<string>(false, "User does not exist.", StatusCodes.Status404NotFound, null, new List<string>());
+           }
+           
+          var response = isExist.UserName;
+          
+           return new ApiResponse<string>(true, "Username displayed successfully", 200, response, new List<string>());
         }
     }
 }

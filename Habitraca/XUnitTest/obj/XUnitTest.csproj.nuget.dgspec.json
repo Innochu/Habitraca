@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\XUnitTest\\XUnitTest.csproj": {}
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/XUnitTest/XUnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\XUnitTest\\XUnitTest.csproj": {
+    "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/XUnitTest/XUnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\XUnitTest\\XUnitTest.csproj",
+        "projectUniqueName": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/XUnitTest/XUnitTest.csproj",
         "projectName": "XUnitTest",
-        "projectPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\XUnitTest\\XUnitTest.csproj",
-        "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Decagon\\OneDrive\\Desktop\\Habitraca\\Habitraca\\XUnitTest\\obj\\",
+        "projectPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/XUnitTest/XUnitTest.csproj",
+        "packagesPath": "/Users/innocentchukwudi/.nuget/packages/",
+        "outputPath": "/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/XUnitTest/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Decagon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/innocentchukwudi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,7 +32,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -117,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }
