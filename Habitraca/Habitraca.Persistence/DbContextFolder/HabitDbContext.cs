@@ -11,8 +11,10 @@ namespace Habitraca.Persistence.DbContextFolder
         public HabitDbContext(DbContextOptions<HabitDbContext> options) : base(options)
         {
 
-        }
-
+        } 
+        public DbSet<PrimaryAcademics> PrimaryAcademicTasks { get; set; }
+        public DbSet<SecondaryAcademics> SecondaryAcademicTasks { get; set; }
+        public DbSet<TertiaryAcademics> TertiaryAcademicTasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -68,5 +68,22 @@ namespace Habitraca.Application.Services
            return new ApiResponse<string>(true, "WeeklyTaskRecord displayed successfully", 200, response, new List<string>());
             
         }
+          public async Task<ApiResponse<string>> WeeklyTaskCount(string id)
+        {
+            if(string.IsNullOrEmpty(id))
+            {
+                return ApiResponse<string>.Failed("User with this phone number already exists.", StatusCodes.Status400BadRequest, new List<string>());
+            }
+             var isExist = await unitOfWork.UserRepository.GetUserByIdAsync(id);
+           if(isExist == null)
+           {
+            return new ApiResponse<string>(false, "User does not exist.", StatusCodes.Status404NotFound, null, new List<string>());
+           }
+           
+          var response = string.Format("{0}/{1}", isExist.WeeklyTaskDone, isExist.WeeklyTaskAssigned);
+          
+           return new ApiResponse<string>(true, "WeeklyTaskRecord displayed successfully", 200, response, new List<string>());
+            
+        }
     }
 }

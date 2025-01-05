@@ -11,24 +11,24 @@
         public ApiResponse(bool succeeded, string? message, int statusCode, T data, List<string> errors)
         {
             Succeeded = succeeded;
-            Message = message ?? ""; 
+            Message = message ?? "";
             StatusCode = statusCode;
             Data = data;
-            Errors = errors ?? new List<string>(); 
+            Errors = errors ?? new List<string>();
         }
 
 
         public ApiResponse(bool succeeded, T data, List<string> errors)
             : this(succeeded, null, 0, data, errors) { }
 
-       
+
 
         public static ApiResponse<T> Success(T data, string message, int statusCode)
         {
             return new ApiResponse<T>(true, message, statusCode, data, new List<string>());
         }
 
-      
+
 
         public static ApiResponse<T> Failed(string message, int statusCode, List<string> errors)
         {

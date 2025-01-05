@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Habitraca.Persistence.Migrations
 {
     [DbContext(typeof(HabitDbContext))]
-    [Migration("20240501194845_initial")]
-    partial class initial
+    [Migration("20250105203530_academics")]
+    partial class academics
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,105 @@ namespace Habitraca.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.PrimaryAcademics", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PrimaryAcademicTasks");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.SecondaryAcademics", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SecondaryAcademicTasks");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.TertiaryAcademics", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TertiaryAcademicTasks");
+                });
 
             modelBuilder.Entity("Habitraca.Domain.Entities.User", b =>
                 {
@@ -38,6 +137,14 @@ namespace Habitraca.Persistence.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DailyTaskAssigned")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DailyTaskDone")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("timestamp with time zone");
@@ -69,6 +176,14 @@ namespace Habitraca.Persistence.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("MonthlyTaskAssigned")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MonthlyTaskDone")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -108,6 +223,14 @@ namespace Habitraca.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
+                    b.Property<string>("WeeklyTaskAssigned")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("WeeklyTaskDone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -122,11 +245,13 @@ namespace Habitraca.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1da89e30-23bf-4eed-847e-afa9a64a6cec",
+                            Id = "7668b156-8587-4941-893c-183349600f87",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "89bce0e8-6b37-46fe-b960-fc71755b1f0b",
-                            CreatedAt = new DateTime(2024, 5, 1, 19, 48, 45, 84, DateTimeKind.Utc).AddTicks(348),
-                            DateModified = new DateTime(2024, 5, 1, 19, 48, 45, 84, DateTimeKind.Utc).AddTicks(355),
+                            ConcurrencyStamp = "4ca63c97-60b7-4ec1-8d1d-0b04273b53fa",
+                            CreatedAt = new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810),
+                            DailyTaskAssigned = "",
+                            DailyTaskDone = "",
+                            DateModified = new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810),
                             Email = "Chuksinnocent1@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Innocent",
@@ -134,13 +259,17 @@ namespace Habitraca.Persistence.Migrations
                             IsActive = true,
                             LastName = "Chukwudi",
                             LockoutEnabled = false,
+                            MonthlyTaskAssigned = "",
+                            MonthlyTaskDone = "",
                             Password = "Password",
                             PasswordResetToken = "",
                             PhoneNumber = "07013238817",
                             PhoneNumberConfirmed = false,
-                            ResetTokenExpires = new DateTime(2024, 5, 1, 19, 48, 45, 84, DateTimeKind.Utc).AddTicks(353),
-                            SecurityStamp = "35403cac-a827-41d2-b60d-9142d8cb4c23",
-                            TwoFactorEnabled = false
+                            ResetTokenExpires = new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810),
+                            SecurityStamp = "0847caf6-9d3f-4fc0-bc9f-ab28d571fed9",
+                            TwoFactorEnabled = false,
+                            WeeklyTaskAssigned = "",
+                            WeeklyTaskDone = ""
                         });
                 });
 
