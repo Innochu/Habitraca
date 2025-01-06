@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Habitraca.Persistence.DbContextFolder
 {
@@ -10,30 +9,46 @@ namespace Habitraca.Persistence.DbContextFolder
     {
         public HabitDbContext(DbContextOptions<HabitDbContext> options) : base(options)
         {
+        }
 
-        } 
-        public DbSet<PrimaryAcademics> PrimaryAcademicTasks { get; set; }
-        public DbSet<SecondaryAcademics> SecondaryAcademicTasks { get; set; }
-        public DbSet<TertiaryAcademics> TertiaryAcademicTasks { get; set; }
-        public DbSet<CareerGrowth> CareerGrowths { get; set; }
-        public DbSet<PhysicalFitness> PhysicalFitnesss { get; set; }
-        public DbSet<MentalWellness> MentalWellnesss { get; set; }
-        public DbSet<Leadership> Leaderships { get; set; }
-        public DbSet<FinanacialManagement> FinanacialManagements { get; set; }
-        public DbSet<SocialDevelopment> SocialDevelopments { get; set; }
-        public DbSet<PersonalGrowth> PersonalGrowths { get; set; }
-        public DbSet<SpiritualGrowth> SpiritualGrowths { get; set; }
-        public DbSet<HealthyEating> HealthyEatings { get; set; }
-        public DbSet<ComputerLiteracy> ComputerLiteracys { get; set; }
+        public DbSet<HabitTask> Tasks { get; set; }
+        public DbSet<TaskCompletion> TaskCompletions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure primary key for IdentityUserLogin
-            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(p => new { p.LoginProvider, p.ProviderKey });
+            modelBuilder.Entity<IdentityUserLogin<string>>()
+                .HasKey(p => new { p.LoginProvider, p.ProviderKey });
 
-            // Seed initial data for User entity
+            modelBuilder.Entity<HabitTask>(entity =>
+            {
+                entity.HasOne(t => t.User)
+                    .WithMany(u => u.Tasks)
+                    .HasForeignKey(t => t.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.Property(t => t.Category)
+                    .HasConversion<string>();
+
+                entity.Property(t => t.Frequency)
+                    .HasConversion<string>();
+            });
+
+            modelBuilder.Entity<TaskCompletion>(entity =>
+            {
+                entity.HasOne(tc => tc.User)
+                    .WithMany(u => u.CompletedTasks)
+                    .HasForeignKey(tc => tc.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(tc => tc.Task)
+                    .WithMany()
+                    .HasForeignKey(tc => tc.TaskId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // Seed data
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -45,6 +60,5 @@ namespace Habitraca.Persistence.DbContextFolder
                 }
             );
         }
-
     }
 }

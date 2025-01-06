@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Habitraca.Persistence.Migrations
 {
-    public partial class academics : Migration
+    public partial class Task : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,12 +32,6 @@ namespace Habitraca.Persistence.Migrations
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
-                    DailyTaskDone = table.Column<string>(type: "text", nullable: false),
-                    WeeklyTaskDone = table.Column<string>(type: "text", nullable: false),
-                    MonthlyTaskDone = table.Column<string>(type: "text", nullable: false),
-                    DailyTaskAssigned = table.Column<string>(type: "text", nullable: false),
-                    WeeklyTaskAssigned = table.Column<string>(type: "text", nullable: false),
-                    MonthlyTaskAssigned = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     PasswordResetToken = table.Column<string>(type: "text", nullable: false),
@@ -62,57 +56,6 @@ namespace Habitraca.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PrimaryAcademicTasks",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Points = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatedBy = table.Column<string>(type: "text", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PrimaryAcademicTasks", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SecondaryAcademicTasks",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Points = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatedBy = table.Column<string>(type: "text", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SecondaryAcademicTasks", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TertiaryAcademicTasks",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Points = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatedBy = table.Column<string>(type: "text", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TertiaryAcademicTasks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -221,10 +164,67 @@ namespace Habitraca.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Tasks",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Points = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    Category = table.Column<string>(type: "text", nullable: false),
+                    Frequency = table.Column<string>(type: "text", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<string>(type: "text", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tasks_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TaskCompletions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    TaskId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CompletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<string>(type: "text", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaskCompletions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaskCompletions_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TaskCompletions_Tasks_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Tasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "DailyTaskAssigned", "DailyTaskDone", "DateModified", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "MonthlyTaskAssigned", "MonthlyTaskDone", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PasswordResetToken", "PhoneNumber", "PhoneNumberConfirmed", "ResetTokenExpires", "SecurityStamp", "TwoFactorEnabled", "UserName", "WeeklyTaskAssigned", "WeeklyTaskDone" },
-                values: new object[] { "7668b156-8587-4941-893c-183349600f87", 0, "4ca63c97-60b7-4ec1-8d1d-0b04273b53fa", new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810), "", "", new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810), "Chuksinnocent1@gmail.com", false, "Innocent", "", true, "Chukwudi", false, null, "", "", null, null, "Password", null, "", "07013238817", false, new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810), "0847caf6-9d3f-4fc0-bc9f-ab28d571fed9", false, null, "", "" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "DateModified", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PasswordResetToken", "PhoneNumber", "PhoneNumberConfirmed", "ResetTokenExpires", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "4869b73c-4013-4a0e-8ee6-96e8474b4163", 0, "b7504788-ec0d-447e-9e7c-07c1f0dc2936", new DateTime(2025, 1, 6, 16, 14, 6, 81, DateTimeKind.Utc).AddTicks(9570), new DateTime(2025, 1, 6, 16, 14, 6, 81, DateTimeKind.Utc).AddTicks(9570), "Chuksinnocent1@gmail.com", false, "Innocent", "", true, "Chukwudi", false, null, null, null, "Password", null, "", "07013238817", false, new DateTime(2025, 1, 6, 16, 14, 6, 81, DateTimeKind.Utc).AddTicks(9570), "ffdba90b-8a13-40d3-881c-cfe5d5e2eae2", false, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -262,6 +262,21 @@ namespace Habitraca.Persistence.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskCompletions_TaskId",
+                table: "TaskCompletions",
+                column: "TaskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskCompletions_UserId",
+                table: "TaskCompletions",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tasks_UserId",
+                table: "Tasks",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -282,16 +297,13 @@ namespace Habitraca.Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PrimaryAcademicTasks");
-
-            migrationBuilder.DropTable(
-                name: "SecondaryAcademicTasks");
-
-            migrationBuilder.DropTable(
-                name: "TertiaryAcademicTasks");
+                name: "TaskCompletions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Tasks");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

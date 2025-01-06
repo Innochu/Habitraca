@@ -1,4 +1,5 @@
 using Habitraca.Application.Interface.Service;
+using Habitraca.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Habitraca.Controllers
@@ -47,6 +48,19 @@ namespace Habitraca.Controllers
         {
             var result = await _taskService.MonthlyTaskRecord(id);
                 if (result.Succeeded)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest(result);
+                }
+        }
+        [HttpPost("AddTask(s)/{id}")] //endpoint to allow user submit list of task chosen 
+        public async Task<IActionResult> AddTask(string id, [FromBody] List<TaskDto> listOfTasks)
+        {
+            var result = await _taskService.AddUserTask(id, listOfTasks);
+            if (result.Succeeded)
                 {
                     return Ok(result);
                 }

@@ -1,122 +1,197 @@
-
 using Habitraca.Application.Interface.Service;
 using Habitraca.Application.Interfaces.Repositories;
 using Habitraca.Domain;
+using Habitraca.Domain.Entities;
+using Habitraca.Domain.Enum;
 using Microsoft.AspNetCore.Http;
 
 namespace Habitraca.Application.Services
 {
     public class TaskService : ITaskService
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public TaskService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
+        }
+
+        private async Task<(int completed, int total)> GetTaskStats(string userId, TaskFrequency frequency)
+        {
+            var periodStart = GetPeriodStartDate(frequency);
+            
+            // Get completed tasks using TaskCompletionRepository
+            var completions = await _unitOfWork.TaskCompletionRepository
+                .GetByDateRangeAsync(userId, periodStart, DateTime.UtcNow);
+            
+            var completedCount = completions
+                .Count(tc => tc.Task.Frequency == frequency);
+
+            // Get total active tasks using TaskRepository
+            var activeTasks = await _unitOfWork.TaskRepository.GetActiveTasksAsync();
+            var totalCount = activeTasks
+                .Count(t => t.Frequency == frequency);
+
+            return (completedCount, totalCount);
+        }
+
+        private DateTime GetPeriodStartDate(TaskFrequency frequency)
+        {
+            var now = DateTime.UtcNow;
+            return frequency switch
+            {
+                TaskFrequency.Daily => now.Date,
+                TaskFrequency.Weekly => now.AddDays(-(int)now.DayOfWeek).Date,
+                TaskFrequency.Monthly => new DateTime(now.Year, now.Month, 1),
+                _ => throw new ArgumentException("Invalid frequency")
+            };
         }
 
         public async Task<ApiResponse<string>> DailyTaskRecord(string id)
         {
-            if(string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
-                return ApiResponse<string>.Failed("User with this phone number already exists.", StatusCodes.Status400BadRequest, new List<string>());
+                return ApiResponse<string>.Failed(
+                    "Invalid user ID provided.", 
+                    StatusCodes.Status400BadRequest, 
+                    new List<string>());
             }
-             var isExist = await unitOfWork.UserRepository.GetUserByIdAsync(id);
-           if(isExist == null)
-           {
-            return new ApiResponse<string>(false, "User does not exist.", StatusCodes.Status404NotFound, null, new List<string>());
-           }
-           
-          var response = string.Format("{0}/{1}", isExist.DailyTaskDone, isExist.DailyTaskAssigned);
-          
-           return new ApiResponse<string>(true, "DailyTaskRecord displayed successfully", 200, response, new List<string>());
-            
-        }
 
-        public async Task<ApiResponse<string>> MonthlyTaskRecord(string id)
-        {
-            if(string.IsNullOrEmpty(id))
+            var user = await _unitOfWork.UserRepository.GetUserByIdAsync(id);
+            if (user == null)
             {
-                return ApiResponse<string>.Failed("User with this phone number already exists.", StatusCodes.Status400BadRequest, new List<string>());
+                return new ApiResponse<string>(
+                    false, 
+                    "User does not exist.", 
+                    StatusCodes.Status404NotFound, 
+                    null, 
+                    new List<string>());
             }
-             var isExist = await unitOfWork.UserRepository.GetUserByIdAsync(id);
-           if(isExist == null)
-           {
-            return new ApiResponse<string>(false, "User does not exist.", StatusCodes.Status404NotFound, null, new List<string>());
-           }
-           
-          var response = string.Format("{0}/{1}", isExist.MonthlyTaskDone, isExist.MonthlyTaskAssigned);
-          
-           return new ApiResponse<string>(true, "MonthlyTaskRecord displayed successfully", 200, response, new List<string>());
-            
+
+            var (completed, total) = await GetTaskStats(id, TaskFrequency.Daily);
+            var response = $"{completed}/{total}";
+
+            return new ApiResponse<string>(
+                true, 
+                "Daily task record displayed successfully", 
+                200, 
+                response, 
+                new List<string>());
         }
 
         public async Task<ApiResponse<string>> WeeklyTaskRecord(string id)
         {
-            if(string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
-                return ApiResponse<string>.Failed("User with this phone number already exists.", StatusCodes.Status400BadRequest, new List<string>());
+                return ApiResponse<string>.Failed(
+                    "Invalid user ID provided.", 
+                    StatusCodes.Status400BadRequest, 
+                    new List<string>());
             }
-             var isExist = await unitOfWork.UserRepository.GetUserByIdAsync(id);
-           if(isExist == null)
-           {
-            return new ApiResponse<string>(false, "User does not exist.", StatusCodes.Status404NotFound, null, new List<string>());
-           }
-           
-          var response = string.Format("{0}/{1}", isExist.WeeklyTaskDone, isExist.WeeklyTaskAssigned);
-          
-           return new ApiResponse<string>(true, "WeeklyTaskRecord displayed successfully", 200, response, new List<string>());
-            
+
+            var user = await _unitOfWork.UserRepository.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return new ApiResponse<string>(
+                    false, 
+                    "User does not exist.", 
+                    StatusCodes.Status404NotFound, 
+                    null, 
+                    new List<string>());
+            }
+
+            var (completed, total) = await GetTaskStats(id, TaskFrequency.Weekly);
+            var response = $"{completed}/{total}";
+
+            return new ApiResponse<string>(
+                true, 
+                "Weekly task record displayed successfully", 
+                200, 
+                response, 
+                new List<string>());
         }
-       
-       
-        public async Task<ApiResponse<string>> PostTaskAssigned(string id)
+
+        public async Task<ApiResponse<string>> MonthlyTaskRecord(string id)
         {
-            if(string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
-                return ApiResponse<string>.Failed("User with this phone number already exists.", StatusCodes.Status400BadRequest, new List<string>());
+                return ApiResponse<string>.Failed(
+                    "Invalid user ID provided.", 
+                    StatusCodes.Status400BadRequest, 
+                    new List<string>());
             }
-             var isExist = await unitOfWork.UserRepository.GetUserByIdAsync(id);
-           if(isExist == null)
-           {
-            return new ApiResponse<string>(false, "User does not exist.", StatusCodes.Status404NotFound, null, new List<string>());
-           }
-           var taskCountService = new TaskService(unitOfWork);
-    var totalActiveTasks = await taskCountService.GetTotalActiveTasksCount(id);
-   
-    return new ApiResponse<string>(
-        true, 
-        "WeeklyTaskRecord displayed successfully", 
-        StatusCodes.Status200OK, 
-        totalActiveTasks.ToString(), 
-        new List<string>()
-    );
+
+            var user = await _unitOfWork.UserRepository.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return new ApiResponse<string>(
+                    false, 
+                    "User does not exist.", 
+                    StatusCodes.Status404NotFound, 
+                    null, 
+                    new List<string>());
+            }
+
+            var (completed, total) = await GetTaskStats(id, TaskFrequency.Monthly);
+            var response = $"{completed}/{total}";
+
+            return new ApiResponse<string>(
+                true, 
+                "Monthly task record displayed successfully", 
+                200, 
+                response, 
+                new List<string>());
         }
-    
 
-     public async Task<int> GetTotalActiveTasksCount(string userId)
-    {
-        if (string.IsNullOrEmpty(userId))
-            throw new ArgumentNullException(nameof(userId));
+        public async Task<int> GetTotalActiveTasksCount(string userId)
+        {
+            var activeTasks = await _unitOfWork.TaskRepository.GetActiveTasksAsync();
+            return activeTasks.Count();
+        }
 
-        var totalCount = 0;
+       public async Task<ApiResponse<string>> AddUserTask(string id, List<TaskDto> listOfTasks) 
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return ApiResponse<string>.Failed(
+                    "Invalid user ID provided.", 
+                    StatusCodes.Status400BadRequest, 
+                    new List<string>());
+            }
 
-        // Add counts from each task table
-      totalCount += await unitOfWork.CareerGrowthRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.ComputerLiteracyRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.FinancialManagementRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.HealthyEatingRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.LeadershipRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.MentalWellnessRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.PersonalGrowthRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.PhysicalFitnessRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.PrimaryAcademicsRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.SecondaryAcademicsRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.SocialDevelopmentRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.SpiritualGrowthRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
-totalCount += await unitOfWork.TertiaryAcademicsRepository.CountAsync(x => x.Id == Guid.Parse(userId) && x.IsActive);
+            var user = await _unitOfWork.UserRepository.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return new ApiResponse<string>(
+                    false, 
+                    "User does not exist.", 
+                    StatusCodes.Status404NotFound, 
+                    null, 
+                    new List<string>());
+            }
 
-        return totalCount;
+            if (listOfTasks == null || !listOfTasks.Any())
+            {
+                return ApiResponse<string>.Failed(
+                    "No tasks provided.", 
+                    StatusCodes.Status400BadRequest, 
+                    new List<string>());
+            }
+            var tasksToAdd = listOfTasks.Select(task => new HabitTask
+            {
+                Title = task.Task,
+                Frequency = task.Frequency,
+                Category = task.Category,
+                Points = task.Points,
+                UserId = id,  // Assigning the user ID to each task
+                CreatedAt = DateTime.UtcNow
+            }).ToList();
+
+            await _unitOfWork.TaskRepository.AddRangeAsync(tasksToAdd);
+            await _unitOfWork.TaskRepository.CommitAsync();
+
+            return new ApiResponse<string>(true, "Tasks added successfully.", StatusCodes.Status201Created, null, null);
+        }
+
     }
-}
 }

@@ -1,95 +1,28 @@
+using Habitraca.Domain.Enum;
 using Microsoft.AspNetCore.Identity;
 
 namespace Habitraca.Domain.Entities
 {
-    public class PrimaryAcademics : BaseEntity
+    public class HabitTask : BaseEntity
     {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
+      public string Title { get; set; } = string.Empty;
+        public int Points { get; set; } 
+        public bool IsActive { get; set; } = true;
+        public TaskCategory Category { get; set; }
+        public TaskFrequency Frequency { get; set; }
+        
+        // Foreign key for user
+        public string UserId { get; set; } = string.Empty;
+        public User User { get; set; }
     }
 
-    public class SecondaryAcademics : BaseEntity
+     public class TaskCompletion : BaseEntity
     {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
+        public string UserId { get; set; }
+        public User User { get; set; }
+        public Guid TaskId { get; set; }
+        public HabitTask Task { get; set; }
+        public DateTime CompletedAt { get; set; } = DateTime.UtcNow;
     }
 
-    public class TertiaryAcademics : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class CareerGrowth : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class PhysicalFitness : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class MentalWellness : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class Leadership : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class FinancialManagement : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class SocialDevelopment : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class PersonalGrowth : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class SpiritualGrowth : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class HealthyEating : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
-
-    public class ComputerLiteracy : BaseEntity
-    {
-        public string Task { get; set; } = string.Empty; 
-        public string Points { get; set; } = string.Empty;
-        public bool IsActive { get; set; } = false;
-    }
 }
