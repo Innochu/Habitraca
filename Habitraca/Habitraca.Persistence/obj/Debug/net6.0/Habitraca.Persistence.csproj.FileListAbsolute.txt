@@ -75,4 +75,5 @@ C:/Users/Decagon/OneDrive/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/
 /Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/Debug/net6.0/Habitraca.Persistence.pdb
 /Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/Debug/net6.0/Habitraca.Persistence.genruntimeconfig.cache
 /Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/Debug/net6.0/ref/Habitraca.Persistence.dll
-/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/Debug/net6.0/Habitraca.Persistence.csproj.CopyComplete
+/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/Debug/net6.0/Habitraca.Persistence.sourcelink.json
+/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Persistence/obj/Debug/net6.0/Habitrac.7BBDF96F.Up2Date

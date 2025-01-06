@@ -22,6 +22,270 @@ namespace Habitraca.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Habitraca.Domain.Entities.CareerGrowth", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CareerGrowths");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.ComputerLiteracy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ComputerLiteracys");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.FinanacialManagement", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FinanacialManagements");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.HealthyEating", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HealthyEatings");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.Leadership", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Leaderships");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.MentalWellness", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MentalWellnesss");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.PersonalGrowth", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PersonalGrowths");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.PhysicalFitness", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhysicalFitnesss");
+                });
+
             modelBuilder.Entity("Habitraca.Domain.Entities.PrimaryAcademics", b =>
                 {
                     b.Property<Guid>("Id")
@@ -35,11 +299,11 @@ namespace Habitraca.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Points")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Points")
+                    b.Property<string>("Task")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -68,11 +332,11 @@ namespace Habitraca.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Points")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Points")
+                    b.Property<string>("Task")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -88,6 +352,72 @@ namespace Habitraca.Persistence.Migrations
                     b.ToTable("SecondaryAcademicTasks");
                 });
 
+            modelBuilder.Entity("Habitraca.Domain.Entities.SocialDevelopment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialDevelopments");
+                });
+
+            modelBuilder.Entity("Habitraca.Domain.Entities.SpiritualGrowth", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Points")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Task")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpiritualGrowths");
+                });
+
             modelBuilder.Entity("Habitraca.Domain.Entities.TertiaryAcademics", b =>
                 {
                     b.Property<Guid>("Id")
@@ -101,11 +431,11 @@ namespace Habitraca.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Points")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Points")
+                    b.Property<string>("Task")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -243,13 +573,13 @@ namespace Habitraca.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7668b156-8587-4941-893c-183349600f87",
+                            Id = "a88a62b1-cbdd-4d9f-a874-8b58e26ac1e9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4ca63c97-60b7-4ec1-8d1d-0b04273b53fa",
-                            CreatedAt = new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810),
+                            ConcurrencyStamp = "f7bdb1e4-d934-497b-8991-cfe51659587d",
+                            CreatedAt = new DateTime(2025, 1, 5, 23, 17, 15, 535, DateTimeKind.Utc).AddTicks(9110),
                             DailyTaskAssigned = "",
                             DailyTaskDone = "",
-                            DateModified = new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810),
+                            DateModified = new DateTime(2025, 1, 5, 23, 17, 15, 535, DateTimeKind.Utc).AddTicks(9110),
                             Email = "Chuksinnocent1@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Innocent",
@@ -263,8 +593,8 @@ namespace Habitraca.Persistence.Migrations
                             PasswordResetToken = "",
                             PhoneNumber = "07013238817",
                             PhoneNumberConfirmed = false,
-                            ResetTokenExpires = new DateTime(2025, 1, 5, 20, 35, 30, 330, DateTimeKind.Utc).AddTicks(1810),
-                            SecurityStamp = "0847caf6-9d3f-4fc0-bc9f-ab28d571fed9",
+                            ResetTokenExpires = new DateTime(2025, 1, 5, 23, 17, 15, 535, DateTimeKind.Utc).AddTicks(9110),
+                            SecurityStamp = "62a18004-6a02-4504-a7fa-47f83aed7d8f",
                             TwoFactorEnabled = false,
                             WeeklyTaskAssigned = "",
                             WeeklyTaskDone = ""

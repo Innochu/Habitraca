@@ -11,6 +11,7 @@ namespace Habitraca.Application.Interfaces.Repositories
 		void Update(T entity);
 		Task DeleteAsync(T entity);
 		void DeleteAllAsync(List<T> entities);
+		Task<int> CountAsync(Expression<Func<T, bool>> expression);
 		Task SaveChangesAsync();
 		Task<T> FindSingleAsync(Expression<Func<T, bool>> expression);
 

@@ -56,3 +56,4 @@ C:/Users/Decagon/OneDrive/Desktop/Habitraca/Habitraca/Habitraca.Domain/obj/Debug
 /Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/obj/Debug/net6.0/Habitraca.Domain.pdb
 /Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/obj/Debug/net6.0/Habitraca.Domain.genruntimeconfig.cache
 /Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/obj/Debug/net6.0/ref/Habitraca.Domain.dll
+/Users/innocentchukwudi/Desktop/Habitraca/Habitraca/Habitraca.Domain/obj/Debug/net6.0/Habitraca.Domain.sourcelink.json

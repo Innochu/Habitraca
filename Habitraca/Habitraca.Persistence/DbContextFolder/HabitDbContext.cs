@@ -15,6 +15,16 @@ namespace Habitraca.Persistence.DbContextFolder
         public DbSet<PrimaryAcademics> PrimaryAcademicTasks { get; set; }
         public DbSet<SecondaryAcademics> SecondaryAcademicTasks { get; set; }
         public DbSet<TertiaryAcademics> TertiaryAcademicTasks { get; set; }
+        public DbSet<CareerGrowth> CareerGrowths { get; set; }
+        public DbSet<PhysicalFitness> PhysicalFitnesss { get; set; }
+        public DbSet<MentalWellness> MentalWellnesss { get; set; }
+        public DbSet<Leadership> Leaderships { get; set; }
+        public DbSet<FinanacialManagement> FinanacialManagements { get; set; }
+        public DbSet<SocialDevelopment> SocialDevelopments { get; set; }
+        public DbSet<PersonalGrowth> PersonalGrowths { get; set; }
+        public DbSet<SpiritualGrowth> SpiritualGrowths { get; set; }
+        public DbSet<HealthyEating> HealthyEatings { get; set; }
+        public DbSet<ComputerLiteracy> ComputerLiteracys { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

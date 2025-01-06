@@ -57,6 +57,10 @@ namespace Habitraca.Persistence.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
+         public async Task<int> CountAsync(Expression<Func<T, bool>> expression)
+        {
+            return await _context.Set<T>().Where(expression).CountAsync();
+        }
 
         public async Task SaveChangesAsync()
         {

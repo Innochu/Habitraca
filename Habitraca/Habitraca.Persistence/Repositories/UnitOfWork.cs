@@ -11,12 +11,48 @@ namespace Habitraca.Persistence.Repositories
 		private readonly HabitDbContext _context;
 
 		public UnitOfWork(HabitDbContext context)
-		{
-            _context = context;		
-			UserRepository = new UserRepository(_context);
-        }
+{
+    _context = context;
+    UserRepository = new UserRepository(_context);
+    CareerGrowthRepository = new CareerGrowthRepository(_context);
+    ComputerLiteracyRepository = new ComputerLiteracyRepository(_context);
+    FinancialManagementRepository = new FinancialManagementRepository(_context);
+    HealthyEatingRepository = new HealthyEatingRepository(_context);
+    LeadershipRepository = new LeadershipRepository(_context);
+    MentalWellnessRepository = new MentalWellnessRepository(_context);
+    PersonalGrowthRepository = new PersonalGrowthRepository(_context);
+    PhysicalFitnessRepository = new PhysicalFitnessRepository(_context);
+    PrimaryAcademicsRepository = new PrimaryAcademicsRepository(_context);
+    SecondaryAcademicsRepository = new SecondaryAcademicsRepository(_context);
+    SocialDevelopmentRepository = new SocialDevelopmentRepository(_context);
+    SpiritualGrowthRepository = new SpiritualGrowthRepository(_context);
+    TertiaryAcademicsRepository = new TertiaryAcademicsRepository(_context);
+}
 
         public IUserRepository UserRepository { get; set; }
+
+public ICareerGrowthRepository CareerGrowthRepository { get; set; }
+
+public IComputerLiteracyRepository ComputerLiteracyRepository { get; set; }
+
+public IFinancialManagementRepository FinancialManagementRepository { get; set; }
+
+public IHealthyEatingRepository HealthyEatingRepository { get; set; }
+
+public ILeadershipRepository LeadershipRepository { get; set; }
+
+public IMentalWellnessRepository MentalWellnessRepository { get; set; }
+
+public IPersonalGrowthRepository PersonalGrowthRepository { get; set; }
+
+public IPhysicalFitnessRepository PhysicalFitnessRepository { get; set; }
+
+public IPrimaryAcademicsRepository PrimaryAcademicsRepository { get; set; }
+
+public ISecondaryAcademicsRepository SecondaryAcademicsRepository { get; set; }
+public ISocialDevelopmentRepository SocialDevelopmentRepository { get; set; }
+public ISpiritualGrowthRepository SpiritualGrowthRepository { get; set; }
+public ITertiaryAcademicsRepository TertiaryAcademicsRepository { get; set; }
 
         public async Task<int> SaveChangesAsync()
         {

@@ -756,7 +756,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0"
         },
         "runtime": {
-          "Habitraca.Application.dll": {}
+          "Habitraca.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Habitraca.Domain/1.0.0": {
@@ -775,7 +778,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.0"
         },
         "runtime": {
-          "Habitraca.Domain.dll": {}
+          "Habitraca.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
