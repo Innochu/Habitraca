@@ -16,7 +16,7 @@ namespace Habitraca.DbContextFolder
 
             var connectionString = configuration.GetConnectionString("HabitracaConnection");
 
-            optionsBuilder.UseNpgsql(connectionString); 
+            optionsBuilder.UseSqlServer(connectionString); 
 
             return new HabitDbContext(optionsBuilder.Options);
         }

@@ -13,6 +13,7 @@ namespace Habitraca.Persistence.DbContextFolder
 
         public DbSet<HabitTask> Tasks { get; set; }
         public DbSet<TaskCompletion> TaskCompletions { get; set; }
+        public DbSet<TaskPool> TaskPools { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,7 +27,7 @@ namespace Habitraca.Persistence.DbContextFolder
                 entity.HasOne(t => t.User)
                     .WithMany(u => u.Tasks)
                     .HasForeignKey(t => t.UserId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.Property(t => t.Category)
                     .HasConversion<string>();
@@ -47,8 +48,21 @@ namespace Habitraca.Persistence.DbContextFolder
                     .HasForeignKey(tc => tc.TaskId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+            modelBuilder.Entity<TaskPool>(entity =>
+            {
+                entity.Property(tp => tp.Category)
+                    .HasConversion<string>(); 
 
-            // Seed data
+                entity.Property(tp => tp.Title)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(tp => tp.IsActive)
+                    .HasDefaultValue(true);
+                entity.Property(tp => tp.Points)
+                    .HasDefaultValue(0);
+            });
+
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
