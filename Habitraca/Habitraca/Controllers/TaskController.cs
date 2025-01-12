@@ -1,5 +1,6 @@
 using Habitraca.Application.Interface.Service;
 using Habitraca.Domain.Entities;
+using Habitraca.Domain.Enum;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Habitraca.Controllers
@@ -56,7 +57,7 @@ namespace Habitraca.Controllers
                     return BadRequest(result);
                 }
         }
-        [HttpPost("AddTask(s)/{id}")] //endpoint to allow user submit list of task chosen 
+        [HttpPost("AddTask(s)/{id}")]
         public async Task<IActionResult> AddTask(string id, [FromBody] List<TaskDto> listOfTasks)
         {
             var result = await _taskService.AddUserTask(id, listOfTasks);
@@ -69,5 +70,58 @@ namespace Habitraca.Controllers
                     return BadRequest(result);
                 }
         }
+        [HttpPost("AddCompletedTasks")]
+        public async Task<IActionResult> AddcompletedTask(string id, [FromBody] List<CompletedTaskDto> listOfTasks)
+        {
+            var result = await _taskService.AddCompletedTask(id, listOfTasks);
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+        [HttpGet("Get-All-TaskPool-By-Category")]
+        public async Task<IActionResult> TaskPool(TaskCategory category)
+        {
+            var result = await _taskService.GetAllTaskPoolByCategory(category);
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            else
+            { 
+                return BadRequest(result);
+            }
+        }
+        [HttpGet("{id:Guid}Get-All-SelectedTask-By-UserId")]
+        public async Task<IActionResult> SelectedTask(string id)
+        {
+            var result = await _taskService.GetAllSelectedTask(id);
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+        [HttpGet("Get-CompletedTask-By-UserId")]
+        public async Task<IActionResult> CompletedTask(string id)
+        {
+            var result = await _taskService.GetAllCompletedTask(id);
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
     }
 }

@@ -10,4 +10,9 @@ namespace Habitraca.Domain.Entities
             public TaskFrequency Frequency { get; set; }
             public TaskCategory Category { get; set; }
         }
+    public class CompletedTaskDto
+    {
+        public string TaskId { get; set; }
+      
+    }
 }

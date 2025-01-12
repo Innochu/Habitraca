@@ -7,6 +7,7 @@ namespace Habitraca.Application.Interfaces.Repositories
       IUserRepository UserRepository { get; }
        ITaskRepository TaskRepository { get; }
        ITaskCompletionRepository TaskCompletionRepository { get; }
+        ITaskPoolRepository TaskPoolRepository { get; }
         // ICareerGrowthRepository CareerGrowthRepository { get; }
         // IComputerLiteracyRepository ComputerLiteracyRepository { get; }
         // IFinancialManagementRepository FinancialManagementRepository { get; }

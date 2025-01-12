@@ -16,6 +16,7 @@ namespace Habitraca.Application.Interface.Repositories
         Task AddAsync(HabitTask task);
         void Update(HabitTask task);
         void Delete(HabitTask task);
+        Task<List<HabitTask>> GetByTaskIdsAsync(IEnumerable<Guid> taskIds);
     }
 
     public interface ITaskCompletionRepository
@@ -24,5 +25,6 @@ namespace Habitraca.Application.Interface.Repositories
         Task<IEnumerable<TaskCompletion>> GetByUserIdAsync(string userId);
         Task<IEnumerable<TaskCompletion>> GetByDateRangeAsync(string userId, DateTime start, DateTime end);
         Task AddAsync(TaskCompletion completion);
+        Task AddRangeAsync(IEnumerable<TaskCompletion> tasks);
     }
 }

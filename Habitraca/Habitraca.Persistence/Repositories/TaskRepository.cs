@@ -45,10 +45,10 @@ public async Task<IEnumerable<HabitTask>> GetByCategoryAsync(TaskCategory catego
                 .Where(t => t.IsActive)
                 .ToListAsync();
         }
-public async Task AddRangeAsync(IEnumerable<HabitTask> tasks)
-{
-     await _context.Tasks.AddRangeAsync(tasks);
-}
+        public async Task AddRangeAsync(IEnumerable<HabitTask> tasks)
+        {
+             await _context.Tasks.AddRangeAsync(tasks);
+        }
         public async Task AddAsync(HabitTask task)
         {
             await _context.Tasks.AddAsync(task);
@@ -68,6 +68,11 @@ public async Task AddRangeAsync(IEnumerable<HabitTask> tasks)
     {
         await _context.SaveChangesAsync();
     }
+        public async Task<List<HabitTask>> GetByTaskIdsAsync(IEnumerable<Guid> taskIds)
+        {
+            return await _context.Tasks.Where(t => taskIds.Contains(t.Id)).ToListAsync();
+        }
+
     }
 
     public class TaskCompletionRepository : ITaskCompletionRepository
@@ -105,6 +110,11 @@ public async Task AddRangeAsync(IEnumerable<HabitTask> tasks)
         public async Task AddAsync(TaskCompletion completion)
         {
             await _context.TaskCompletions.AddAsync(completion);
+        }
+
+        public async Task AddRangeAsync(IEnumerable<TaskCompletion> tasks)
+        {
+            await _context.TaskCompletions.AddRangeAsync(tasks);
         }
     }
 }
