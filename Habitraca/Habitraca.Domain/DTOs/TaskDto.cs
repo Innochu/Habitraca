@@ -13,6 +13,9 @@ namespace Habitraca.Domain.Entities
     public class CompletedTaskDto
     {
         public string TaskId { get; set; }
-      
+        public string UserId { get; set; }
+        public DateTime CompletedAt { get; set; }
+        public string TaskTitle { get; set; } 
+        public int TaskPoints { get; set; }
     }
 }

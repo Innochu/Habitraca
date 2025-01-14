@@ -14,6 +14,7 @@ namespace Habitraca.Persistence.DbContextFolder
         public DbSet<HabitTask> Tasks { get; set; }
         public DbSet<TaskCompletion> TaskCompletions { get; set; }
         public DbSet<TaskPool> TaskPools { get; set; }
+        public DbSet<Graph> Graphs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,18 +36,23 @@ namespace Habitraca.Persistence.DbContextFolder
                 entity.Property(t => t.Frequency)
                     .HasConversion<string>();
             });
+            modelBuilder.Entity<Graph>(entity =>
+            {
+                entity.HasKey(t => t.Id);
+
+            });
 
             modelBuilder.Entity<TaskCompletion>(entity =>
             {
                 entity.HasOne(tc => tc.User)
                     .WithMany(u => u.CompletedTasks)
                     .HasForeignKey(tc => tc.UserId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(tc => tc.Task)
                     .WithMany()
                     .HasForeignKey(tc => tc.TaskId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
             });
             modelBuilder.Entity<TaskPool>(entity =>
             {

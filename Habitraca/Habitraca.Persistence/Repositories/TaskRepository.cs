@@ -106,7 +106,24 @@ public async Task<IEnumerable<HabitTask>> GetByCategoryAsync(TaskCategory catego
                             tc.CompletedAt <= end)
                 .ToListAsync();
         }
- 
+        public async Task<List<Graph>> GetTotalPointsPerDayAsync(string userId, DateTime startDate, DateTime endDate)
+        {
+            // Query TaskCompletions and project them into GraphData
+            var result = await _context.TaskCompletions
+                .Where(tc => tc.UserId == userId && tc.CompletedAt >= startDate && tc.CompletedAt <= endDate)
+                .GroupBy(tc => tc.CompletedAt.Date)  // Group by date
+                .Select(g => new Graph
+                {
+                    Date = g.Key,  
+                    TaskCount = g.Sum(tc => tc.Task.Points) 
+                })
+                .OrderBy(g => g.Date)  // Optional: Order by date for display
+                .ToListAsync();
+
+            return result;
+        }
+
+
         public async Task AddAsync(TaskCompletion completion)
         {
             await _context.TaskCompletions.AddAsync(completion);

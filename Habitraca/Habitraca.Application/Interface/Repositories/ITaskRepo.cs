@@ -26,5 +26,6 @@ namespace Habitraca.Application.Interface.Repositories
         Task<IEnumerable<TaskCompletion>> GetByDateRangeAsync(string userId, DateTime start, DateTime end);
         Task AddAsync(TaskCompletion completion);
         Task AddRangeAsync(IEnumerable<TaskCompletion> tasks);
+        Task<List<Graph>> GetTotalPointsPerDayAsync(string userId, DateTime startDate, DateTime endDate);
     }
 }

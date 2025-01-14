@@ -27,6 +27,7 @@ namespace Habitraca.Persistence.Extensions
             services.AddScoped<UserManager<User>>();
             services.AddScoped<IAuthService, AuthService>();
              services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IGraphService, GraphService>();
             // Register Email services
             var emailSettings = new EmailSettings();
             configuration.GetSection("EmailSettings").Bind(emailSettings);

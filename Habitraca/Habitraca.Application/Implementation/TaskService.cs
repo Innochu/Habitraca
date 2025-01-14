@@ -249,6 +249,7 @@ namespace Habitraca.Application.Services
                     CompletedAt = DateTime.UtcNow 
                 };
             }).Where(t => t != null).ToList(); // Remove any null TaskCompletion entries
+            Console.WriteLine($"Number of tasks to add: {tasksToAdd.Count}");
 
             await _unitOfWork.TaskCompletionRepository.AddRangeAsync(tasksToAdd);
             await _unitOfWork.TaskRepository.CommitAsync(); 
@@ -327,8 +328,8 @@ namespace Habitraca.Application.Services
                 taskList,
                 new List<string>());
         }
-        
 
+       
 
     }
 } 

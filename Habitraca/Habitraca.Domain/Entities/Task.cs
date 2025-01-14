@@ -1,5 +1,6 @@
 using Habitraca.Domain.Enum;
 using Microsoft.AspNetCore.Identity;
+using System.Text.Json.Serialization;
 
 namespace Habitraca.Domain.Entities
 {
@@ -13,14 +14,18 @@ namespace Habitraca.Domain.Entities
         
         // Foreign key for user
         public string UserId { get; set; } = string.Empty;
+        [JsonIgnore]
         public User User { get; set; }
     }
 
      public class TaskCompletion : BaseEntity
     {
+        [JsonIgnore]
         public string UserId { get; set; }
+        [JsonIgnore]
         public User User { get; set; }
         public Guid TaskId { get; set; }
+        [JsonIgnore]
         public HabitTask Task { get; set; }
         public DateTime CompletedAt { get; set; } = DateTime.UtcNow;
     }
