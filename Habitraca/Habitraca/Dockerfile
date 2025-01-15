@@ -18,7 +18,7 @@ COPY ["Habitraca/Habitraca.Domain/Habitraca.Domain.csproj", "Habitraca.Domain/"]
 RUN dotnet restore "Habitraca/Habitraca.csproj"
 COPY . .
 WORKDIR "/src/Habitraca"
-RUN dotnet build "Habitraca.csproj" -c Release -o /app/build
+RUN dotnet build "Habitraca/Habitraca.csproj" -c Release -o /app/build
 
 FROM build AS publish
 #ARG BUILD_CONFIGURATION=Release
