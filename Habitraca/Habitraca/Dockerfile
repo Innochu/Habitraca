@@ -11,10 +11,10 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 #ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Habitraca/Habitraca.csproj", "Habitraca/"]
-COPY ["Habitraca.Common/Habitraca.Common.csproj", "Habitraca.Common/"]
-COPY ["Habitraca.Persistence/Habitraca.Persistence.csproj", "Habitraca.Persistence/"]
-COPY ["Habitraca.Application/Habitraca.Application.csproj", "Habitraca.Application/"]
-COPY ["Habitraca.Domain/Habitraca.Domain.csproj", "Habitraca.Domain/"]  
+COPY ["Habitraca/Habitraca.Common/Habitraca.Common.csproj", "Habitraca.Common/"]
+COPY ["Habitraca/Habitraca.Persistence/Habitraca.Persistence.csproj", "Habitraca.Persistence/"]
+COPY ["Habitraca/Habitraca.Application/Habitraca.Application.csproj", "Habitraca.Application/"]
+COPY ["Habitraca/Habitraca.Domain/Habitraca.Domain.csproj", "Habitraca.Domain/"]  
 RUN dotnet restore "Habitraca/Habitraca.csproj"
 COPY . .
 WORKDIR "/src/Habitraca"
