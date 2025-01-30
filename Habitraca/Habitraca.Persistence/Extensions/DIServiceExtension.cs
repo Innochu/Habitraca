@@ -24,8 +24,9 @@ namespace Habitraca.Persistence.Extensions
 
             //services.AddDbContext<HabitDbContext>(options => 
             //options.UseSqlServer(configuration.GetConnectionString("HabitracaConnection")));
+
             services.AddDbContext<HabitDbContext>(options =>
-         options.UseSqlServer(configuration.GetConnectionString(connectionString)));
+        options.UseSqlServer(connectionString));
 
             services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<UserManager<User>>();
