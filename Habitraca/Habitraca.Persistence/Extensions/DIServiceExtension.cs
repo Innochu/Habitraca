@@ -20,13 +20,10 @@ namespace Habitraca.Persistence.Extensions
     {
         public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRINGS_HABITRACACONNECTION");
 
-            //services.AddDbContext<HabitDbContext>(options => 
-            //options.UseSqlServer(configuration.GetConnectionString("HabitracaConnection")));
+            services.AddDbContext<HabitDbContext>(options => 
+            options.UseNpgsql(configuration.GetConnectionString("HabitracaConnection")));
 
-            services.AddDbContext<HabitDbContext>(options =>
-        options.UseSqlServer(connectionString));
 
             services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<UserManager<User>>();
