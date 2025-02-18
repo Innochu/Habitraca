@@ -18,4 +18,9 @@ namespace Habitraca.Domain.Entities
         public string TaskTitle { get; set; } 
         public int TaskPoints { get; set; }
     }
+    public class DailyPointsChartDTO
+    {
+        public DateTime Date { get; set; }
+        public int Points { get; set; }
+    }
 }

@@ -1,10 +1,11 @@
 ﻿
+using Habitraca.Domain;
 using Habitraca.Domain.Entities;
 
 namespace Habitraca.Application.Interface.Service
 {
     public interface IGraphService
     {
-        List<Graph> GetTaskDataForRange(DateTime startDate, DateTime endDate, string id);
+        Task<ApiResponse<List<DailyPointsChartDTO>>> GetDailyPointsChartData(string id, int numberOfDays = 7);
     }
 }

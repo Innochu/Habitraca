@@ -15,11 +15,11 @@ namespace Habitraca.Controllers
             this.graphService = graphService;
         }
         [HttpGet("get-task-data")]
-        public IActionResult GetTaskData(DateTime startDate, DateTime endDate, string id)
+        public IActionResult GetTaskData(string id, int numberOfDays = 7)
         {
             try
             {
-                var taskDataList = graphService.GetTaskDataForRange(startDate, endDate, id);
+                var taskDataList = graphService.GetDailyPointsChartData( id,  numberOfDays = 7);
                 return Ok(taskDataList);
             }
             catch (ArgumentException ex)

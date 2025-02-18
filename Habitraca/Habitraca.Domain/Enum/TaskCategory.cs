@@ -17,3 +17,4 @@ namespace Habitraca.Domain.Enum
         ComputerLiteracy
     }
 }
+    

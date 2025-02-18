@@ -43,7 +43,7 @@ namespace Habitraca.Application.Services
             {
                 TaskFrequency.Daily => now.Date,
                 TaskFrequency.Weekly => now.AddDays(-(int)now.DayOfWeek).Date,
-                TaskFrequency.Monthly => new DateTime(now.Year, now.Month, 1),
+                TaskFrequency.Monthly => new DateTime(now.Year, now.Month, 1, 0, 0, 0, DateTimeKind.Utc),
                 _ => throw new ArgumentException("Invalid frequency")
             };
         }
@@ -143,7 +143,7 @@ namespace Habitraca.Application.Services
                 response, 
                 new List<string>());
         }
-
+                       
         public async Task<int> GetTotalActiveTasksCount(string userId)
         {
             var activeTasks = await _unitOfWork.TaskRepository.GetActiveTasksAsync();
@@ -307,7 +307,7 @@ namespace Habitraca.Application.Services
                 taskList,
                 new List<string>());
         }
-        public async Task<ApiResponse<List<TaskCompletion>>> GetAllCompletedTask(string id)
+        public async Task<ApiResponse<List<TaskCompletion>>> GetAllCompletedTask(string id, TaskFrequency taskFrequency)
         {
             var tasks = await _unitOfWork.TaskCompletionRepository.GetByUserIdAsync(id);
 
@@ -320,7 +320,7 @@ namespace Habitraca.Application.Services
                     null,
                     new List<string>());
             }
-            var taskList = tasks.ToList();
+            var taskList = tasks.Where(t => t.Task.Frequency == taskFrequency).ToList();
             return new ApiResponse<List<TaskCompletion>>(
                 true,
                 "Completed Tasks displayed successfully",
@@ -329,6 +329,27 @@ namespace Habitraca.Application.Services
                 new List<string>());
         }
 
+        public async Task<ApiResponse<int>> GetDailyCompletedTaskPoints(string id)
+        {
+            var tasks = await _unitOfWork.TaskCompletionRepository.GetByUserIdAsync(id);
+
+            if(tasks == null || !tasks.Any())
+            {
+                return new ApiResponse<int>(
+                  false,
+                  $"No Point was found",
+                  StatusCodes.Status404NotFound,
+                  0,
+                  new List<string>());
+            }
+            var taskPointCounter = tasks.Where(t => t.Task.Frequency == TaskFrequency.Daily).Sum(t => t.Task.Points);
+            return new ApiResponse<int>(
+                true,
+                "Points retrieved successfully",
+                StatusCodes.Status200OK,
+                taskPointCounter,
+                new List<string>());
+        }
        
 
     }

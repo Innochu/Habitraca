@@ -14,7 +14,8 @@ namespace Habitraca.Application.Interface.Service
            Task<ApiResponse<string>> AddUserTask(string id, List<TaskDto> listOfTasks) ;
            Task<ApiResponse<List<TaskPool>>> GetAllTaskPoolByCategory(TaskCategory category);
         Task<ApiResponse<List<HabitTask>>> GetAllSelectedTask(string id);
-        Task<ApiResponse<List<TaskCompletion>>> GetAllCompletedTask(string id);
+        Task<ApiResponse<List<TaskCompletion>>> GetAllCompletedTask(string id, TaskFrequency taskFrequency);
         Task<ApiResponse<string>> AddCompletedTask(string id, List<CompletedTaskDto> listOfTasks);
+        Task<ApiResponse<int>> GetDailyCompletedTaskPoints(string id);
     }
 }

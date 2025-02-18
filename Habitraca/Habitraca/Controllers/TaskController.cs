@@ -110,9 +110,9 @@ namespace Habitraca.Controllers
             }
         }
         [HttpGet("Get-CompletedTask-By-UserId")]
-        public async Task<IActionResult> CompletedTask(string id)
+        public async Task<IActionResult> CompletedTask(string id, TaskFrequency taskFrequency)
         {
-            var result = await _taskService.GetAllCompletedTask(id);
+            var result = await _taskService.GetAllCompletedTask(id, taskFrequency);
             if (result.Succeeded)
             {
                 return Ok(result);
