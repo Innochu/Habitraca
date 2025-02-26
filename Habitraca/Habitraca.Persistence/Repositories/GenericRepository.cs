@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Habitraca.Application.Interfaces.Repositories;
 using System.Linq.Expressions;
+using Habitraca.Domain.Entities;
 
 namespace Habitraca.Persistence.Repositories
 {
@@ -56,8 +57,12 @@ namespace Habitraca.Persistence.Repositories
         {
             return await _context.Set<T>().FindAsync(id);
         }
+        public async Task<T> GetByEmailAsync(string email)
+        {
+            return await _context.Set<T>().FindAsync(email);
+        }
 
-         public async Task<int> CountAsync(Expression<Func<T, bool>> expression)
+        public async Task<int> CountAsync(Expression<Func<T, bool>> expression)
         {
             return await _context.Set<T>().Where(expression).CountAsync();
         }

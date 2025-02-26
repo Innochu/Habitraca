@@ -17,11 +17,13 @@ namespace Habitraca.Persistence.Repositories
             TaskRepository = new TaskRepository(_context);
             TaskCompletionRepository = new TaskCompletionRepository(_context);
             TaskPoolRepository = new TaskPoolRepository(_context);
+            RewardRepository = new RewardRepository(_context);
         }
 
         public IUserRepository UserRepository { get; }
         public ITaskRepository TaskRepository { get; }
         public ITaskCompletionRepository TaskCompletionRepository { get; }
+        public IRewardRepository RewardRepository { get; }
         
         // Add this property to support the TaskService
         public HabitDbContext Context => _context;

@@ -3,6 +3,7 @@ using System;
 using Habitraca.Persistence.DbContextFolder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Habitraca.Persistence.Migrations
 {
     [DbContext(typeof(HabitDbContext))]
-    partial class HabitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250219145049_User_2table")]
+    partial class User_2table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,38 +102,6 @@ namespace Habitraca.Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tasks");
-                });
-
-            modelBuilder.Entity("Habitraca.Domain.Entities.Reward", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Point")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rewards");
                 });
 
             modelBuilder.Entity("Habitraca.Domain.Entities.TaskCompletion", b =>
@@ -315,11 +285,11 @@ namespace Habitraca.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0aa7d75c-0a51-40c6-987e-e359c50533c2",
+                            Id = "d94169f3-97f9-4809-a35b-42e6dbd11d13",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3e32363d-cbfa-4b14-a927-7868fc676106",
-                            CreatedAt = new DateTime(2025, 2, 26, 2, 54, 10, 844, DateTimeKind.Utc).AddTicks(7053),
-                            DateModified = new DateTime(2025, 2, 26, 2, 54, 10, 844, DateTimeKind.Utc).AddTicks(7055),
+                            ConcurrencyStamp = "b5fd37fa-e4a3-4a27-81de-2cd1c866d9ee",
+                            CreatedAt = new DateTime(2025, 2, 19, 14, 50, 49, 161, DateTimeKind.Utc).AddTicks(4599),
+                            DateModified = new DateTime(2025, 2, 19, 14, 50, 49, 161, DateTimeKind.Utc).AddTicks(4601),
                             Email = "Chuksinnocent1@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Innocent",
@@ -331,8 +301,8 @@ namespace Habitraca.Persistence.Migrations
                             PasswordResetToken = "",
                             PhoneNumber = "07013238817",
                             PhoneNumberConfirmed = false,
-                            ResetTokenExpires = new DateTime(2025, 2, 26, 2, 54, 10, 844, DateTimeKind.Utc).AddTicks(7054),
-                            SecurityStamp = "fa0d4566-03cb-463d-a1c1-049f480a134c",
+                            ResetTokenExpires = new DateTime(2025, 2, 19, 14, 50, 49, 161, DateTimeKind.Utc).AddTicks(4600),
+                            SecurityStamp = "7e4adbbc-e7a8-46a2-b4f3-18541f51580d",
                             TwoFactorEnabled = false
                         });
                 });

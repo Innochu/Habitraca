@@ -15,6 +15,7 @@ namespace Habitraca.Persistence.DbContextFolder
         public DbSet<TaskCompletion> TaskCompletions { get; set; }
         public DbSet<TaskPool> TaskPools { get; set; }
         public DbSet<Graph> Graphs { get; set; }
+        public DbSet<Reward> Rewards { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

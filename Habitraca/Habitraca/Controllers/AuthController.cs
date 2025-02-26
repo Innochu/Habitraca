@@ -48,7 +48,15 @@ namespace Habitraca.Controllers
             {
                 BadRequest(ApiResponse<string>.Failed("Invalid model state.", 400, ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList()));
             }
-            return Ok(await _authService.LoginAsync(loginDTO));
+           var response = await _authService.LoginAsync(loginDTO);
+            if (response.Succeeded)
+            {
+                return Ok(new ApiResponse<string>(true, response.Message, response.StatusCode, null, new List<string>()));
+            }
+            else
+            {
+                return BadRequest(new ApiResponse<string>(false, response.Message, response.StatusCode, null, response.Errors));
+            }
         }
 
         [HttpPost("logout")]

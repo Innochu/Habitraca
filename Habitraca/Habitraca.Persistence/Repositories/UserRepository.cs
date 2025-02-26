@@ -16,6 +16,8 @@ namespace Habitraca.Persistence.Repositories
             await DeleteAsync(user);
         }
 
+     
+
         public async Task<User> GetUserByIdAsync(string id) => await GetByIdAsync(id);
 
         public async Task<User> UpdateAsync(User user)
